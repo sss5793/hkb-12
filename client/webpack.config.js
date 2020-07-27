@@ -6,7 +6,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
-    publicPath: "public/",
     sourceMapFilename: "bundle.js.map",
   },
   devServer: {
