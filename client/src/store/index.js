@@ -1,11 +1,15 @@
 const observer = {
     user : {
         data: 'user1',
-        eventHandler : null,
+        eventHandler : () => {},
     },
     account : {
         data: [ '거래 1' , '거래 2'],
-        eventHandler : null,
+        eventHandler : () => {},
+    },
+    path : {
+        data: 'hbk',
+        eventHandler : () => {},
     },
 };
 
