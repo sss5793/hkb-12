@@ -1,0 +1,19 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["airbnb"],
+    "rules": {
+        "indent": ["error", 4],
+        "import/named": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": 0,
+        "jsx-a11y/control-has-associated-label": 0,
+        "jsx-a11y/label-has-associated-control": 0,
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    }
+}
