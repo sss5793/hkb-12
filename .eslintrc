@@ -1,0 +1,16 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["airbnb"],
+    "rules": {
+        "import/named": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": 0
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    }
+}
