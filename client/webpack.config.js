@@ -1,19 +1,19 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.js",
-  mode: "development",
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "public"),
-    filename: "bundle.js",
-    sourceMapFilename: "bundle.js.map",
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js',
+    sourceMapFilename: 'bundle.js.map',
   },
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, "/public"),
+    contentBase: path.join(__dirname, '/public'),
     port: 9000,
     proxy: {
-      "/api/": {
-        target: "http://127.0.0.1:3000",
+      '/api/': {
+        // target: 'http://127.0.0.1:3000',
         changeOrigin: true,
       },
     },
@@ -22,29 +22,29 @@ module.exports = {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
       {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: [
               [
-                "@babel/preset-env",
+                '@babel/preset-env',
                 {
                   corejs: 3,
-                  targets: "> 1%",
-                  useBuiltIns: "usage",
+                  targets: '> 1%',
+                  useBuiltIns: 'usage',
                 },
               ],
             ],
-            plugins: ["@babel/plugin-proposal-class-properties"],
+            plugins: ['@babel/plugin-proposal-class-properties'],
           },
         },
       },
