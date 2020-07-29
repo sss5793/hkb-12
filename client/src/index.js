@@ -1,15 +1,48 @@
-import { registerEvent, setState, getState } from "./store";
+import {getState, registerEvent, setState} from "./store";
+import Route from "./route";
+import './assets/reset.scss';
+import './index.scss';
 
-function init() {
-    // 초기 데이터
-    const user = getState('user');
-    console.log(user);
-    // 이벤트 등록
-    registerEvent('user',(data) => console.log(data));
-    registerEvent('account',(data) => console.log(data));
+const pageRoute = (path) => {
+    const app = document.querySelector('.App');
+    app.innerHTML = Route(path);
+};
 
-    // 데이터 변경
-    setState('user', '사용자 1');
-}
+const App = () => {
+    const path = getState('path');
 
-init();
+    registerEvent('path', pageRoute);
+
+    const app = document.querySelector('.App');
+
+    // 페이지 이동 액션 등록
+    app.addEventListener('click', (e) => {
+        const goHkbBtn = document.querySelector('.go_hbk');
+        const goCalendarBtn = document.querySelector('.go_calendar');
+        const goGraphBtn = document.querySelector('.go_graph');
+
+        if(e.target === goHkbBtn){
+            history.pushState('hbk', '', '/');
+            setState('path','hbk');
+        }else if (e.target === goCalendarBtn){
+            history.pushState('calendar', '', '/calendar');
+            setState('path','calendar');
+        }else if (e.target === goGraphBtn){
+            history.pushState('graph', '', '/graph');
+            setState('path','graph');
+        }
+    });
+
+    //popstate 이벤트 발생시, 현재 path를 가져온 뒤, 적절한 view렌더링을 한다.
+    window.addEventListener("popstate", () => {
+        setState('path',history.state);
+        pageRoute(history.state);
+    });
+
+    return Route(path);
+};
+
+const app = document.querySelector('.App');
+app.innerHTML = App();
+
+
