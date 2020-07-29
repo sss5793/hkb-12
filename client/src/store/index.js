@@ -1,12 +1,16 @@
 const observer = {
-  user: {
-    data: 'user1',
-    eventHandler: null,
-  },
-  account: {
-    data: ['거래 1', '거래 2'],
-    eventHandler: null,
-  },
+    user : {
+        data: 'user1',
+        eventHandler : () => {},
+    },
+    account : {
+        data: [ '거래 1' , '거래 2'],
+        eventHandler : () => {},
+    },
+    path : {
+        data: 'hbk',
+        eventHandler : () => {},
+    },
 };
 
 function registerEvent(key, eventHandler) {
