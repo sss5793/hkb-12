@@ -1,6 +1,5 @@
 import { getState, registerEvent, setState } from './store';
 import Route from './route';
-import './assets/reset.scss';
 import './index.scss';
 
 const pageRoute = (path) => {
@@ -17,17 +16,17 @@ const App = () => {
 
   // 페이지 이동 액션 등록
   app.addEventListener('click', (e) => {
-    const goHkbBtn = document.querySelector('.go_hbk');
-    const goCalendarBtn = document.querySelector('.go_calendar');
-    const goGraphBtn = document.querySelector('.go_graph');
+    const navHkbBtn = document.querySelector('.nav_hbk');
+    const navCalendarBtn = document.querySelector('.nav_calendar');
+    const navGraphBtn = document.querySelector('.nav_graph');
 
-    if (e.target === goHkbBtn) {
+    if (e.target === navHkbBtn) {
       window.history.pushState('hbk', '', '/');
       setState('path', 'hbk');
-    } else if (e.target === goCalendarBtn) {
+    } else if (e.target === navCalendarBtn) {
       window.history.pushState('calendar', '', '/calendar');
       setState('path', 'calendar');
-    } else if (e.target === goGraphBtn) {
+    } else if (e.target === navGraphBtn) {
       window.history.pushState('graph', '', '/graph');
       setState('path', 'graph');
     }
