@@ -11,6 +11,8 @@ const pageRoute = (path) => {
 const App = () => {
   const path = getState('path');
 
+  fetch('/api/hbkhist', { method: 'GET' }).then((res) => res.json()).then((res) => console.log(res)).catch((e) => console.log(e));
+
   registerEvent('path', pageRoute);
 
   const app = document.querySelector('.App');
