@@ -1,0 +1,39 @@
+.case_history {
+  td {
+    border-top: 1px solid #e0e0e0;
+  }
+
+  td:first-child {
+    padding: 10px 5px;
+  }
+
+  td:nth-child(3) {
+    width: 5rem;
+  }
+
+  td:nth-child(4) {
+    width: 8rem;
+  }
+
+  .category {
+    background-color: #29b7ad;
+    border-radius: 15px;
+    text-align: center;
+    border: 0;
+    color: #fff;
+    padding: 5px 0;
+    font-size: 0.8rem;
+  }
+  .content {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 10px;
+  }
+  .payment {
+    text-align: center;
+  }
+  .amount {
+    text-align: right;
+  }
+}
