@@ -1,4 +1,4 @@
-import { Hkb, Calendar, Graph } from './pages';
+import { Hkb, CalendarPage, Graph } from './pages';
 
 const Route = (path) => {
   let page;
@@ -8,7 +8,7 @@ const Route = (path) => {
       console.log('내역 페이지');
       break;
     case 'calendar':
-      page = Calendar();
+      page = CalendarPage();
       console.log('달력 페이지');
       break;
     case 'graph':
