@@ -35,7 +35,6 @@ const HkbForm = () => {
       const form = document.querySelector('.hkb_form');
       const category = form.querySelector('.category');
       const payment = form.querySelector('.payment');
-      console.log(category.value, payment.value);
     }
 
     const incomeBtn = document.querySelector('.hkb_form .income');
