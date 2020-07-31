@@ -3,7 +3,7 @@ import { Hkb, CalendarPage, Graph } from './pages';
 const Route = (path) => {
   let page;
   switch (path) {
-    case 'hbk':
+    case 'hkb':
       page = Hkb();
       console.log('내역 페이지');
       break;

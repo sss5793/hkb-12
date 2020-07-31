@@ -8,7 +8,7 @@ const observer = {
     eventHandler: () => {},
   },
   path: {
-    data: 'hbk',
+    data: 'hkb',
     eventHandler: () => {},
   },
   currentType: {

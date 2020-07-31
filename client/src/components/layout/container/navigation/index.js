@@ -13,7 +13,7 @@ const Navigation = () => {
         <button class="next_month"> > </button>
       </div>
       <div class="page_nav">
-        <button class="page_nav_hbk ${path === 'hbk' ? 'active' : ''}">내역</button>
+        <button class="page_nav_hkb ${path === 'hkb' ? 'active' : ''}">내역</button>
         <div class="bar"></div>
         <button class="page_nav_calendar ${path === 'calendar' ? 'active' : ''}">달력</button>
         <div class="bar"></div>

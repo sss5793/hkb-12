@@ -16,13 +16,13 @@ const App = () => {
 
   // 페이지 이동 액션 등록
   app.addEventListener('click', (e) => {
-    const navHkbBtn = document.querySelector('.page_nav_hbk');
+    const navHkbBtn = document.querySelector('.page_nav_hkb');
     const navCalendarBtn = document.querySelector('.page_nav_calendar');
     const navGraphBtn = document.querySelector('.page_nav_graph');
 
     if (e.target === navHkbBtn) {
-      window.history.pushState('hbk', '', '/');
-      setState('path', 'hbk');
+      window.history.pushState('hkb', '', '/');
+      setState('path', 'hkb');
     } else if (e.target === navCalendarBtn) {
       window.history.pushState('calendar', '', '/calendar');
       setState('path', 'calendar');
@@ -66,8 +66,8 @@ const App = () => {
       window.history.pushState('calendar', '', '/calendar');
       setState('path', 'calendar');
     } else {
-      window.history.pushState('hbk', '', '/');
-      setState('path', 'hbk');
+      window.history.pushState('hkb', '', '/');
+      setState('path', 'hkb');
     }
   });
 
