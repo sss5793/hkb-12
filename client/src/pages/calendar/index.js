@@ -1,7 +1,10 @@
 import { Layout, Calendar } from '../../components';
+import { getState } from '../../store';
 
-const CalendarPage = () => (
-  Layout(`<div class="calendar_page">${Calendar()}</div>`)
-);
+const CalendarPage = () => {
+  const currentMonth = getState('currentMonth');
+
+  return Layout(`<div class="calendar_page">${Calendar(currentMonth)}</div>`);
+};
 
 export default CalendarPage;
