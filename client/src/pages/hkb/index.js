@@ -1,5 +1,7 @@
 import './hkb.scss';
-import { Layout, HkbForm, HkbSum, DailyHistory } from '../../components';
+import {
+  Layout, HkbForm, HkbSum, DailyHistory,
+} from '../../components';
 import { getState } from '../../store';
 import { daysOfHistory, getAllIncome, getAllExpense } from '../../utils';
 
