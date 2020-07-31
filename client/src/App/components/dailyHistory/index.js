@@ -1,6 +1,8 @@
 import './dailyHistory.scss';
 import CaseHistory from './caseHistory';
-import { getWeek, numberWithCommas, getAllIncome, getAllExpense } from '../../utils';
+import {
+  getWeek, numberWithCommas, getAllIncome, getAllExpense,
+} from '../../utils';
 
 const DailyHistory = (data) => {
   const date = data[0].createdAt;

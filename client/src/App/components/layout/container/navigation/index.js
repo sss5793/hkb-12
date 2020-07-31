@@ -4,7 +4,6 @@ import {getState, setState} from '../../../../store';
 const Navigation = () => {
   const currentMonth = getState('currentMonth');
   const path = getState('path');
-  console.log(path);
 
   return `<div class="nav">
       <div class="month_update">

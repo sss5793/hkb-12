@@ -12,8 +12,7 @@ export const numberWithCommas = (num) => {
 };
 
 export const getMonth = (date) => {
-  const month =
-    date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+  const month = date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
   return month;
 };
 
@@ -36,22 +35,22 @@ export const daysOfHistory = (history) => {
 
 export const getAllIncome = (history) => {
   let dayAllIncome = 0;
-  history.forEach((item) => {
+  for (const item in history) {
     if (item.type === '수입') {
       dayAllIncome += item.amount;
     }
-  });
+  }
 
   return dayAllIncome;
 };
 
 export const getAllExpense = (history) => {
   let dayAllExpense = 0;
-  history.forEach((item) => {
+  for (const item in history) {
     if (item.type === '지출') {
       dayAllExpense += item.amount;
     }
-  });
+  }
 
   return dayAllExpense;
 };

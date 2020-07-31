@@ -3,8 +3,10 @@ import Navigation from './navigation';
 
 const Container = (child) => (
   `<div class="container">
-      ${Navigation()}
+    ${Navigation()}
+    <div class="contents">
       ${child}
+    </div>
   </div>`
 );
 
