@@ -32,6 +32,19 @@ const App = () => {
     }
   });
 
+  window.addEventListener('DOMContentLoaded', (event) => {
+    if (window.location.pathname === '/graph') {
+      window.history.pushState('graph', '', '/graph');
+      setState('path', 'graph');
+    } else if (window.location.pathname === '/calendar') {
+      window.history.pushState('calendar', '', '/calendar');
+      setState('path', 'calendar');
+    } else {
+      window.history.pushState('hbk', '', '/');
+      setState('path', 'hbk');
+    }
+  });
+
   // popstate 이벤트 발생시, 현재 path를 가져온 뒤, 적절한 view렌더링을 한다.
   window.addEventListener('popstate', () => {
     setState('path', window.history.state);
