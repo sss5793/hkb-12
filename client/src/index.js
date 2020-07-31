@@ -10,8 +10,6 @@ const pageRoute = (path) => {
 const App = () => {
   const path = getState('path');
 
-  // fetch('/api/hbkhist', { method: 'GET' }).then((res) => res.json()).then((res) => console.log(res)).catch((e) => console.log(e));
-
   registerEvent('path', pageRoute);
 
   const app = document.querySelector('.App');
@@ -57,6 +55,19 @@ const App = () => {
       setState('currentMonth', changeMonth);
       const month = document.querySelector('.month');
       month.textContent = `${changeMonth}월`;
+    }
+  });
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    if (window.location.pathname === '/graph') {
+      window.history.pushState('graph', '', '/graph');
+      setState('path', 'graph');
+    } else if (window.location.pathname === '/calendar') {
+      window.history.pushState('calendar', '', '/calendar');
+      setState('path', 'calendar');
+    } else {
+      window.history.pushState('hbk', '', '/');
+      setState('path', 'hbk');
     }
   });
 

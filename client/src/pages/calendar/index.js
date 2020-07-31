@@ -1,7 +1,7 @@
-import { Layout } from '../../components';
+import { Layout, Calendar } from '../../components';
 
-const Calendar = () => (
-  Layout('<div class="calendar">달력 페이지</div>')
+const CalendarPage = () => (
+  Layout(`<div class="calendar_page">${Calendar()}</div>`)
 );
 
-export default Calendar;
+export default CalendarPage;
