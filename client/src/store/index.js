@@ -1,16 +1,77 @@
 const observer = {
-    user : {
-        data: 'user1',
-        eventHandler : () => {},
-    },
-    account : {
-        data: [ '거래 1' , '거래 2'],
-        eventHandler : () => {},
-    },
-    path : {
-        data: 'hbk',
-        eventHandler : () => {},
-    },
+  user: {
+    data: 'user1',
+    eventHandler: () => {},
+  },
+  account: {
+    data: ['거래 1', '거래 2'],
+    eventHandler: () => {},
+  },
+  path: {
+    data: 'hbk',
+    eventHandler: () => {},
+  },
+  currentType: {
+    data: '수입',
+    eventHandler: () => {},
+  },
+  currentMonth: {
+    data: new Date().getMonth() + 1,
+    eventHandler: () => {},
+  },
+  hkbHistory: {
+    data: [
+      {
+        category: '쇼핑/뷰티',
+        content: '미용실',
+        payment: '현대카드',
+        amount: 26000,
+        type: '지출',
+        createdAt: new Date(),
+      },
+      {
+        category: '식비',
+        content: '맥도날드',
+        payment: '현대카드',
+        amount: 26000,
+        type: '지출',
+        createdAt: new Date(),
+      },
+      {
+        category: '월급',
+        content: '월급',
+        payment: '국민은행',
+        amount: 2000000,
+        type: '수입',
+        createdAt: new Date(),
+      },
+      {
+        category: '식비',
+        content: '홍콩반점',
+        payment: '현대카드',
+        amount: 6000,
+        type: '지출',
+        createdAt: new Date('2020-07-29'),
+      },
+      {
+        category: '식비',
+        content: '홍콩반점',
+        payment: '현대카드',
+        amount: 6000,
+        type: '지출',
+        createdAt: new Date('2020-07-28'),
+      },
+      {
+        category: '식비',
+        content: '홍콩반점',
+        payment: '현대카드',
+        amount: 6000,
+        type: '지출',
+        createdAt: new Date('2020-06-29'),
+      },
+    ],
+    eventHandler: () => {},
+  },
 };
 
 function registerEvent(key, eventHandler) {
@@ -31,8 +92,4 @@ function setState(key, data) {
   observer[key].eventHandler(observer[key].data);
 }
 
-export {
-  registerEvent,
-  setState,
-  getState,
-};
+export { registerEvent, setState, getState };

@@ -2,4 +2,58 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  flex-direction: column;
+
+  button {
+    background-color: transparent;
+    border: 0;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .month_update {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+
+    button {
+      width: 50px;
+    }
+  }
+
+  .page_nav{
+    width: 100%;
+    height: 2.5rem;
+    background-color: #e9eaef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 15px;
+    padding: 8px 0;
+
+    .bar {
+      height: 100%;
+      background-color: #000;
+      width: 1px;
+    }
+    button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      margin: 0 10px;
+    }
+
+    .active {
+      background-color: #fff;
+      border-radius: 15px;
+    }
+  }
 }
