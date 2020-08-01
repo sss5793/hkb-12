@@ -13,30 +13,27 @@ const App = () => {
 
   const app = document.querySelector('.App');
 
-  // 페이지 이동 액션 등록
-  app.addEventListener('click', (e) => {
-    const navHkbBtn = document.querySelector('.page_nav_hbk');
-    const navCalendarBtn = document.querySelector('.page_nav_calendar');
-    const navGraphBtn = document.querySelector('.page_nav_graph');
+  // 액션 등록
+  app.addEventListener('click', (event) => {
+    const { target } = event;
 
-    if (e.target === navHkbBtn) {
-      window.history.pushState('hbk', '', '/');
-      setState('path', 'hbk');
-      navHkbBtn.classList.add('active');
-      navCalendarBtn.classList.remove('active');
-      navGraphBtn.classList.remove('active');
-    } else if (e.target === navCalendarBtn) {
-      window.history.pushState('calendar', '', '/calendar');
-      setState('path', 'calendar');
-      navHkbBtn.classList.remove('active');
-      navCalendarBtn.classList.add('active');
-      navGraphBtn.classList.remove('active');
-    } else if (e.target === navGraphBtn) {
-      window.history.pushState('graph', '', '/graph');
-      setState('path', 'graph');
-      navHkbBtn.classList.remove('active');
-      navCalendarBtn.classList.remove('active');
-      navGraphBtn.classList.add('active');
+    // 페이지 네이게이션
+    if (target.classList.contains('nav_btn')) {
+      const navBtns = document.querySelectorAll('.nav_btn');
+
+      navBtns.forEach((navBtn) => navBtn.classList.remove('active'));
+      target.classList.add('active');
+
+      if (target.id === 'page_nav_hkb') {
+        window.history.pushState('hbk', '', '/');
+        setState('path', 'hbk');
+      } else if (target.id === 'page_nav_calendar') {
+        window.history.pushState('calendar', '', '/calendar');
+        setState('path', 'calendar');
+      } else if (target.id === 'page_nav_graph') {
+        window.history.pushState('graph', '', '/graph');
+        setState('path', 'graph');
+      }
     }
 
     // navigation 월별 이동
@@ -44,7 +41,7 @@ const App = () => {
     const prevMonth = document.querySelector('.prev_month');
     const nextMonth = document.querySelector('.next_month');
 
-    if (e.target === prevMonth) {
+    if (event.target === prevMonth) {
       const currentMonth = getState('currentMonth');
       let changeMonth = parseInt(currentMonth) - 1;
       if (changeMonth < 1) {
@@ -54,7 +51,7 @@ const App = () => {
       const month = document.querySelector('.month');
       month.textContent = `${changeMonth}월`;
     }
-    if (e.target === nextMonth) {
+    if (event.target === nextMonth) {
       const currentMonth = getState('currentMonth');
       let changeMonth = parseInt(currentMonth) + 1;
       if (changeMonth > 12) {
