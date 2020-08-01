@@ -14,14 +14,15 @@ const HkbPage = () => {
   const monthIncome = getAllIncome(monthHistory);
   const monthExpense = getAllExpense(monthHistory);
 
-  const daysHistory = daysOfHistory(monthHistory).reverse();
+  const daysHistory = daysOfHistory(monthHistory);
+  const days = Object.keys(daysHistory);
 
   return (`
     <div class="hkb_page">
       ${HkbForm()}
       ${HkbSum(monthIncome, monthExpense)}
       <div class='history_list'>
-        ${daysHistory.map((item) => DailyHistory(item)).join('')}
+        ${days.map((day) => DailyHistory(day, daysHistory[day]))}
       </div>
     </div>
   `);

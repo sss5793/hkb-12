@@ -4,8 +4,8 @@ import {
   getWeek, numberWithCommas, getAllIncome, getAllExpense,
 } from '../../utils';
 
-const DailyHistory = (data) => {
-  const date = data[0].createdAt;
+const DailyHistory = (item, data) => {
+  const date = new Date(item);
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const week = getWeek(date.getDay());

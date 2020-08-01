@@ -23,21 +23,27 @@ export const getWeek = (date) => {
 };
 
 export const daysOfHistory = (history) => {
-  const daysHistory = [];
-  history.forEach((element) => {
-    const date = element.createdAt;
-    const d = `${date.getFullYear()}${getMonth(date)}${date.getDate()}`;
-    daysHistory[d] = daysHistory[d] || [];
-    daysHistory[d].push(element);
-  });
+  const daysHistory = {};
+  for (const {
+    createdAt, category, content, payment, amount, type,
+  } of history) {
+    if (daysHistory.hasOwnProperty(createdAt)) {
+      daysHistory[createdAt].push({
+        category, content, payment, amount, type,
+      });
+    } else {
+      daysHistory[createdAt] = [];
+    }
+  }
+
   return daysHistory;
 };
 
 export const getAllIncome = (history) => {
   let dayAllIncome = 0;
-  for (const item in history) {
-    if (item.type === '수입') {
-      dayAllIncome += item.amount;
+  for (const { amount, type } of history) {
+    if (type === '수입') {
+      dayAllIncome += amount;
     }
   }
 
@@ -46,9 +52,9 @@ export const getAllIncome = (history) => {
 
 export const getAllExpense = (history) => {
   let dayAllExpense = 0;
-  for (const item in history) {
-    if (item.type === '지출') {
-      dayAllExpense += item.amount;
+  for (const { amount, type } of history) {
+    if (type === '지출') {
+      dayAllExpense += amount;
     }
   }
 

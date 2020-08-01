@@ -51,7 +51,7 @@ const observer = {
         payment: '현대카드',
         amount: 6000,
         type: '지출',
-        createdAt: new Date('2020-07-29'),
+        createdAt: new Date('2020-08-29'),
       },
       {
         category: '식비',
@@ -59,7 +59,7 @@ const observer = {
         payment: '현대카드',
         amount: 6000,
         type: '지출',
-        createdAt: new Date('2020-07-28'),
+        createdAt: new Date('2020-08-28'),
       },
       {
         category: '식비',
@@ -67,7 +67,7 @@ const observer = {
         payment: '현대카드',
         amount: 6000,
         type: '지출',
-        createdAt: new Date('2020-06-29'),
+        createdAt: new Date('2020-08-29'),
       },
     ],
     eventHandler: () => {},
