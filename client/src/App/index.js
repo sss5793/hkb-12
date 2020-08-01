@@ -8,6 +8,25 @@ const pageRoute = (path) => {
   layout.innerHTML = Route(path);
 };
 
+const activeNavigation = (target) => {
+  const navBtns = document.querySelectorAll('.nav_btn');
+  navBtns.forEach((navBtn) => navBtn.classList.remove('active'));
+  target.classList.add('active');
+};
+
+const setPageHistory = (target) => {
+  if (target.id === 'page_nav_hkb') {
+    window.history.pushState('hbk', '', '/');
+    setState('path', 'hbk');
+  } else if (target.id === 'page_nav_calendar') {
+    window.history.pushState('calendar', '', '/calendar');
+    setState('path', 'calendar');
+  } else if (target.id === 'page_nav_graph') {
+    window.history.pushState('graph', '', '/graph');
+    setState('path', 'graph');
+  }
+};
+
 const App = () => {
   const path = getState('path');
 
@@ -19,21 +38,8 @@ const App = () => {
 
     // 페이지 네이게이션
     if (target.classList.contains('nav_btn')) {
-      const navBtns = document.querySelectorAll('.nav_btn');
-
-      navBtns.forEach((navBtn) => navBtn.classList.remove('active'));
-      target.classList.add('active');
-
-      if (target.id === 'page_nav_hkb') {
-        window.history.pushState('hbk', '', '/');
-        setState('path', 'hbk');
-      } else if (target.id === 'page_nav_calendar') {
-        window.history.pushState('calendar', '', '/calendar');
-        setState('path', 'calendar');
-      } else if (target.id === 'page_nav_graph') {
-        window.history.pushState('graph', '', '/graph');
-        setState('path', 'graph');
-      }
+      activeNavigation(target);
+      setPageHistory(target);
     }
 
     // navigation 월별 이동
