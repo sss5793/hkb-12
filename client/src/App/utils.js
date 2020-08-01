@@ -32,7 +32,9 @@ export const daysOfHistory = (history) => {
         category, content, payment, amount, type,
       });
     } else {
-      daysHistory[createdAt] = [];
+      daysHistory[createdAt] = [{
+        category, content, payment, amount, type,
+      }];
     }
   }
 
