@@ -59,9 +59,9 @@ const setCalendarData = (year, month, history) => {
       if (j === 0 && className === 'future') break;
 
       dayList.push(`
-        <div class='calendar__day ${en_days[j]} ${className}' id='${year}.${mon}.${dayNum}'>
+        <div class='calendar__day ${en_days[j]} ${className}' id='${year}.${mon}.${dayNum}' style="display: flex;">
           <div>${dayNum}</div>
-          <div>${history.hasOwnProperty(`${year}.${mon}.${dayNum}`) ? history[`${year}.${mon}.${dayNum}`].map(i => i.amount).join('<br/>') : ''}</div>
+          <div class="history">${history.hasOwnProperty(`${year}.${mon}.${dayNum}`) ? history[`${year}.${mon}.${dayNum}`].map((i) => `<div class=${i.type === '수입' ? 'income_amount' : 'expense_amount'}>${i.amount}</div>`).join('') : ''}</div>
         </div>
       `);
     }

@@ -18,11 +18,38 @@ $border: 2px solid rgba($color: #000000, $alpha: .1);
     }
 
     .calendar__day {
+      display: flex;
       width: 8rem;
       height: 8rem;
       padding: .3rem;
       border-left: $border;
       border-bottom: $border;
+    
+      .history {
+        display: flex;
+        flex-direction: column;
+        margin: auto 0 0 auto;
+
+        .income_amount {
+          margin-left: auto;
+          color: #3a78fe;
+        }
+
+        .income_amount::before { 
+          content: "+";
+          color: #3a78fe;
+        }
+      
+        .expense_amount {
+          margin-left: auto;;
+          color: #29b7ad;
+        }
+
+        .expense_amount::before { 
+          content: "-";
+          color: #29b7ad;
+        }
+      }  
     }
     .calendar__day:last-child {
       border-right: $border;
