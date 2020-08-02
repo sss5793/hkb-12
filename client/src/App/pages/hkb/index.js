@@ -23,7 +23,7 @@ const HkbPage = () => {
       ${HkbForm()}
       ${HkbSum(monthIncome, monthExpense)}
       <div class='history_list'>
-        ${dayList.map((item) => DailyHistory(daysHistory[item])).join('')}
+        ${dayList.map((item) => DailyHistory(item,daysHistory[item])).join('')}
       </div>
     </div>
   `);

@@ -16,6 +16,11 @@ export const getMonth = (date) => {
   return month;
 };
 
+export const getDate = (date) => {
+  const dateFormat = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
+  return dateFormat;
+};
+
 export const getWeek = (date) => {
   const week = ['일', '월', '화', '수', '목', '금', '토'];
   const dayOfWeek = week[date];
@@ -36,7 +41,7 @@ export const daysOfHistory = (history) => {
   // 변경한 배열 생성해주는 로직 push -> concat
   history.forEach((element) => {
       const date = element.createdAt;
-      const d = `${date.getFullYear()}${getMonth(date)}${date.getDate()}`;
+      const d = `${date.getFullYear()}-${getMonth(date)}-${getDate(date)}`;
       daysHistory[d] = daysHistory[d] || [];
       daysHistory[d] = daysHistory[d].concat(element);
     });
