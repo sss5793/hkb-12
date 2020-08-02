@@ -1,21 +1,20 @@
-import './hkb.scss';
 import {
   HkbForm, HkbSum, DailyHistory,
 } from '../../components';
 import { getState } from '../../store';
-import { daysOfHistory, getAllIncome, getAllExpense } from '../../utils';
+import {
+  daysOfHistory, getAllIncome, getAllExpense, getMonthHistory,
+} from '../../utils';
 
 const HkbPage = () => {
   const currentMonth = getState('currentMonth');
   const hkbHistory = getState('hkbHistory');
-  const monthHistory = hkbHistory.filter(
-    (item) => item.createdAt.getMonth() + 1 === currentMonth,
-  );
+  const monthHistory = getMonthHistory(currentMonth, hkbHistory);
   const monthIncome = getAllIncome(monthHistory);
   const monthExpense = getAllExpense(monthHistory);
 
   const daysHistory = daysOfHistory(monthHistory);
-  const days = Object.keys(daysHistory).map(i => new Date(i).getTime()).sort().reverse();
+  const days = Object.keys(daysHistory).map((i) => new Date(i).getTime()).sort().reverse();
 
   return (`
     <div class="hkb_page">
