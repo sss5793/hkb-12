@@ -14,14 +14,16 @@ const HkbPage = () => {
   const monthIncome = getAllIncome(monthHistory);
   const monthExpense = getAllExpense(monthHistory);
 
-  const daysHistory = daysOfHistory(monthHistory).reverse();
+  const daysHistory = daysOfHistory(monthHistory);
+  // 날짜별 키를 배열로 생성
+  const dayList = Object.keys(daysHistory);
 
   return (`
     <div class="hkb_page">
       ${HkbForm()}
       ${HkbSum(monthIncome, monthExpense)}
       <div class='history_list'>
-        ${daysHistory.map((item) => DailyHistory(item)).join('')}
+        ${dayList.map((item) => DailyHistory(daysHistory[item])).join('')}
       </div>
     </div>
   `);

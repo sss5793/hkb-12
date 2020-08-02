@@ -23,13 +23,24 @@ export const getWeek = (date) => {
 };
 
 export const daysOfHistory = (history) => {
-  const daysHistory = [];
+  let daysHistory = {};
+
+  // 기존에 배열 생성해주는 로직
+  // history.forEach((element) => {
+  //   const date = element.createdAt;
+  //   const d = `${date.getFullYear()}${getMonth(date)}${date.getDate()}`;
+  //   daysHistory[d] = daysHistory[d] || [];
+  //   daysHistory[d].push(element);
+  // });
+
+  // 변경한 배열 생성해주는 로직 push -> concat
   history.forEach((element) => {
-    const date = element.createdAt;
-    const d = `${date.getFullYear()}${getMonth(date)}${date.getDate()}`;
-    daysHistory[d] = daysHistory[d] || [];
-    daysHistory[d].push(element);
-  });
+      const date = element.createdAt;
+      const d = `${date.getFullYear()}${getMonth(date)}${date.getDate()}`;
+      daysHistory[d] = daysHistory[d] || [];
+      daysHistory[d] = daysHistory[d].concat(element);
+    });
+
   return daysHistory;
 };
 
