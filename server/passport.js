@@ -1,4 +1,4 @@
-const LocalStrategy = require('passport-local').Strategy;
+const { local } = require('./services/user-service');
 
 module.exports = (passport) => {
   // 로그인이 성공하면, serializeUser 메서드를 이용하여 사용자 정보를 Session에 저장할 수 있다.
@@ -12,19 +12,5 @@ module.exports = (passport) => {
     done(null, user);
   });
 
-  passport.use(new LocalStrategy({
-    usernameField: 'id',
-    passwordField: 'pw',
-    passReqToCallback: true,
-  }, // 인증 요청
-  ((req, id, pw, done) => {
-    if (id === 'admin' && pw === 'admin') {
-      const user = {
-        userid: 'hello',
-        email: 'hello@world.com',
-      };
-      return done(null, user);
-    }
-    return done(null, false);
-  })));
+  local(passport);
 };
