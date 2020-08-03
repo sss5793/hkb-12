@@ -1,0 +1,13 @@
+.expense_filter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .filter {
+    display: flex;
+  }
+
+  .month_amount {
+    display: flex;
+  }
+}

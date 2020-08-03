@@ -74,11 +74,11 @@ const App = () => {
     } else if (window.location.pathname === '/calendar') {
       window.history.pushState('calendar', '', '/calendar');
       setState('path', 'calendar');
-      pageRoute('graph');
+      pageRoute('calendar');
     } else {
       window.history.pushState('hbk', '', '/');
       setState('path', 'hbk');
-      pageRoute('graph');
+      pageRoute('hbk');
     }
     registerEvent('path', pageRoute);
   });

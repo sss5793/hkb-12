@@ -37,7 +37,7 @@ const Bar = () => {
 
   return(`
     <div>
-        <svg viewBox="0 0 100 100">
+        <svg viewBox="0 0 100 50">
             ${arr.map((item, index) => (BarItem(item, index))).join("")}
         </svg>
     </div>
