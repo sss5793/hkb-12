@@ -1,6 +1,6 @@
 import './hkbForm.scss';
 import { getState, setState } from '../../store';
-import { numberWithCommas, getMonth } from '../../utils';
+import { numberWithCommas, getMonth, getDate } from '../../utils';
 
 const HkbForm = () => {
   const categoryList = ['식비', '생활', '교통'];
@@ -12,7 +12,7 @@ const HkbForm = () => {
   const dateFormat = (date) => {
     const year = date.getFullYear();
     const month = getMonth(date);
-    const day = date.getDate();
+    const day = getDate(date);
     const dateForm = `${year}-${month}-${day}`;
     return dateForm;
   };

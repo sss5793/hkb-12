@@ -35,27 +35,13 @@ export const getMonthHistory = (month, history) => history.filter(
 // 일자별로 히스토리를 객체형태로 반환
 export const getDaysHistory = (history) => {
   const daysHistory = {};
-  //   for (const {
-  //     createdAt, category, content, payment, amount, type,
-  //   } of history) {
-  //     if (daysHistory.hasOwnProperty(`${createdAt.getFullYear()}.${createdAt.getMonth() + 1}.${createdAt.getDate()}`)) {
-  //       daysHistory[`${createdAt.getFullYear()}.${createdAt.getMonth() + 1}.${createdAt.getDate()}`].push({
-  //         category, content, payment, amount, type,
-  //       });
-  //     } else {
-  //       daysHistory[`${createdAt.getFullYear()}.${createdAt.getMonth() + 1}.${createdAt.getDate()}`] = [{
-  //         category, content, payment, amount, type,
-  //       }];
-  //     }
-  //   }
-  
   // 변경한 배열 생성해주는 로직 push -> concat
   history.forEach((element) => {
-      const date = element.createdAt;
-      const d = `${date.getFullYear()}-${getMonth(date)}-${getDate(date)}`;
-      daysHistory[d] = daysHistory[d] || [];
-      daysHistory[d] = daysHistory[d].concat(element);
-    });
+    const date = element.createdAt;
+    const d = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+    daysHistory[d] = daysHistory[d] || [];
+    daysHistory[d] = daysHistory[d].concat(element);
+  });
 
   return daysHistory;
 };
