@@ -1,12 +1,30 @@
-.bar {
-  fill: #aaa;
-  height: 21px;
-  transition: fill .3s ease;
-  cursor: pointer;
-  font-family: Helvetica, sans-serif;
+@keyframes bar-chart-fill {
+  from {
+    left: -500px;
+  }
+  to {
+    left: 0%;
+  }
+}
 
-  text {
-    fill: #555;
-    font-size: 0.2rem;
+
+.graph {
+  .bar {
+    fill: #aaa;
+    height: 21px;
+    animation: bar-chart-fill 1s;
+    transition: fill 1s ease;
+    cursor: pointer;
+    font-family: Helvetica, sans-serif;
+    position: relative;
+
+    text {
+      fill: #555;
+      font-size: 0.2rem;
+    }
+
+    &:hover {
+      fill: #0074d9;
+    }
   }
 }

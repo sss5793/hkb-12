@@ -17,40 +17,6 @@ const HkbForm = () => {
     return dateForm;
   };
 
-  const app = document.querySelector('.App');
-
-  app.addEventListener('input', (e) => {
-    const amountInput = document.querySelector('.hkb_form .amount');
-    if (e.target === amountInput) {
-      amountInput.value = numberWithCommas(e.target.value);
-    }
-  });
-
-  app.addEventListener('click', (e) => {
-    e.preventDefault();
-    const confirm = document.querySelector('.hkb_form .confirm');
-    if (e.target === confirm) {
-      // 데이터 추가하기
-      // 비었으면 return..
-      const form = document.querySelector('.hkb_form');
-      const category = form.querySelector('.category');
-      const payment = form.querySelector('.payment');
-    }
-
-    const incomeBtn = document.querySelector('.hkb_form .income');
-    const expenseBtn = document.querySelector('.hkb_form .expense');
-    if (e.target === incomeBtn) {
-      incomeBtn.classList.add('active');
-      expenseBtn.classList.remove('active');
-      setState('currentType', '수입');
-    }
-    if (e.target === expenseBtn) {
-      incomeBtn.classList.remove('active');
-      expenseBtn.classList.add('active');
-      setState('currentType', '지출');
-    }
-  });
-
   return `
   <div class='hkb_form'>
     <div class='row'>

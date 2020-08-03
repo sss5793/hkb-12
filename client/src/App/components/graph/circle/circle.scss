@@ -1,36 +1,46 @@
 $primaryColor: #0074d9;
 
+@keyframes circle-chart-fill {
+  to { stroke-dasharray: 0 100; }
+}
+
 
 .circle {
+  margin-bottom: 20px;
   .chart {
     margin: 0 auto;
     transform: rotate(-90deg);
-    background: #ddd;
+    background: #000;
     border-radius: 50%;
     display: block;
   }
 
-  .pie {
-    fill: #ddd;
+  .bg {
+    background: #000;
+    animation: circle-chart-fill 1s reverse;
+  }
+
+  .pie1 {
+    fill: $primaryColor;
     stroke: $primaryColor;
-    stroke-width: 50;
-    stroke-dasharray: calc((10 * 147) / 100) 147;
+    //stroke-width: 50;
+    //stroke-dasharray: calc((10 * 147) / 100) 147;
     transition: stroke-dasharray .3s ease;
   }
 
   .pie2 {
-    fill: #ddd;
+    fill: #29b7ae;
     stroke: #29b7ae;
-    stroke-width: 50;
-    stroke-dasharray: calc((20 * 147) / 100) 147;
+    //stroke-width: 50;
+    //stroke-dasharray: calc((20 * 147) / 100) 147;
     transition: stroke-dasharray .3s ease;
   }
 
   .pie3 {
     fill: #ddd;
-    stroke: #ffffff;
-    stroke-width: 50;
-    stroke-dasharray: calc((30 * 147) / 100) 147;
+    stroke: #ddd;
+    //stroke-width: 50;
+    //stroke-dasharray: calc((30 * 147) / 100) 147;
     transition: stroke-dasharray .3s ease;
   }
 

@@ -2,6 +2,7 @@ import { getState, registerEvent, setState } from './store';
 import Route from './route';
 import './index.scss';
 import { Layout } from './components';
+import {GraphEvent, HkbHistClickEvent, HkbHistInputEvent} from './event';
 
 const pageRoute = (path) => {
   const layout = document.querySelector('.contents');
@@ -71,6 +72,7 @@ const App = () => {
       window.history.pushState('graph', '', '/graph');
       setState('path', 'graph');
       pageRoute('graph');
+      app.addEventListener('click',GraphEvent);
     } else if (window.location.pathname === '/calendar') {
       window.history.pushState('calendar', '', '/calendar');
       setState('path', 'calendar');
@@ -79,6 +81,8 @@ const App = () => {
       window.history.pushState('hbk', '', '/');
       setState('path', 'hbk');
       pageRoute('hbk');
+      app.addEventListener('click', HkbHistClickEvent);
+      app.addEventListener('input', HkbHistInputEvent);
     }
     registerEvent('path', pageRoute);
   });

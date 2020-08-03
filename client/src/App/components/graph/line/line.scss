@@ -1,0 +1,42 @@
+.line {
+  .chart {
+    background: white;
+    width: 100%;
+    //border-left: 1px dotted #555;
+    //border-bottom: 1px dotted #555;
+    padding: 20px 20px 20px 0;
+  }
+
+  .labels.x-labels {
+    //text-anchor: middle;
+    border-top: 1px dotted #555;
+  }
+
+  .labels.y-labels {
+    //text-anchor: end;
+    border-right: 1px dotted #555;
+  }
+
+
+  .graph {
+    height: 500px;
+    width: 800px;
+    border-left: 1px dotted #555;
+    border-bottom: 1px dotted #555;
+  }
+
+   .grid {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 1;
+  }
+
+  .labels {
+    font-size: 0.5rem;
+  }
+
+  .data {
+    fill: red;
+    stroke-width: 1;
+  }
+}

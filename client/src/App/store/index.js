@@ -19,6 +19,10 @@ const observer = {
     data: new Date().getMonth() + 1,
     eventHandler: () => {},
   },
+  expenseType: {
+    data: 'category',
+    eventHandler: () => {},
+  },
   hkbHistory: {
     data: [
       {

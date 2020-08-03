@@ -3,47 +3,53 @@ import './circle.scss';
 const Circle = () => {
   const arr = [
     {
-      name : '식비',
-      percent : 50,
-      amount: 50000,
-    },
-    {
       name : '교통',
       percent : 10,
       amount: 10000,
+      offset: 5,
     },
     {
       name : '여가',
       percent : 20,
       amount: 20000,
+      offset: 25,
+    },
+    {
+      name : '식비',
+      percent : 50,
+      amount: 50000,
+      offset: 25,
     },
   ];
 
-  // const BarItem = (item, index) => (
-  //   `
-  //    <g class="bar">
-  //      <text y=${index * 5 + index} dy="1em">
-  //         ${item.name}
-  //      </text>
-  //      <text x="10" y=${index * 5 + index} dy="1em">
-  //         ${item.percent}%
-  //      </text>
-  //      <rect x="20" width=${item.percent} height="5" y=${index * 5 + index}>${item.name}</rect>
-  //      <text x=${25 + item.percent} y=${index * 5 + index} dy="1em">
-  //         ${item.amount}원
-  //      </text>
-  //    </g>`
-  // )
+  const CircleItem = (item, index) => {
+    const offset = 25;
+    const total = 80;
+    const circumference = 31.4;
+    const strokeDash = Math.round((item.percent * circumference) / 100);
+    return (
+    `<circle 
+        r="50"
+        cx="50" 
+        cy="50" 
+        class="pie${index+1}" 
+        stroke-width="1"
+        stroke-dasharray="${item.percent+', '+100}"
+      />`
+  )};
 
   return(`
     <div class="circle">
-      <svg width="100" height="100" class="chart">
-        <circle r="25" cx="50" cy="50" class="pie3"/>
-        <circle r="25" cx="50" cy="50" class="pie2"/>
-        <circle r="25" cx="50" cy="50" class="pie"/>
+      <svg width="300" height="300" viewBox="0 0 100 100" class="chart">
+        <circle r="50" cx="50" cy="50" class="bg"></circle>
+        ${arr.map((item, index) => CircleItem(item, index)).join('')}
       </svg>
     </div>
   `)
 }
 
+
+// <circle r="25" cx="50" cy="50" class="pie3"/>
+//   <circle r="25" cx="50" cy="50" class="pie2"/>
+//   <circle r="25" cx="50" cy="50" class="pie"/>
 export default Circle;
