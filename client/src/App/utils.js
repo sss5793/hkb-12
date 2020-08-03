@@ -27,17 +27,28 @@ export const getWeek = (date) => {
   return dayOfWeek;
 };
 
-export const daysOfHistory = (history) => {
-  let daysHistory = {};
+// 해당 달에 맞는 히스토리 필터링
+export const getMonthHistory = (month, history) => history.filter(
+  (item) => item.createdAt.getMonth() + 1 === month,
+);
 
-  // 기존에 배열 생성해주는 로직
-  // history.forEach((element) => {
-  //   const date = element.createdAt;
-  //   const d = `${date.getFullYear()}${getMonth(date)}${date.getDate()}`;
-  //   daysHistory[d] = daysHistory[d] || [];
-  //   daysHistory[d].push(element);
-  // });
-
+// 일자별로 히스토리를 객체형태로 반환
+export const getDaysHistory = (history) => {
+  const daysHistory = {};
+  //   for (const {
+  //     createdAt, category, content, payment, amount, type,
+  //   } of history) {
+  //     if (daysHistory.hasOwnProperty(`${createdAt.getFullYear()}.${createdAt.getMonth() + 1}.${createdAt.getDate()}`)) {
+  //       daysHistory[`${createdAt.getFullYear()}.${createdAt.getMonth() + 1}.${createdAt.getDate()}`].push({
+  //         category, content, payment, amount, type,
+  //       });
+  //     } else {
+  //       daysHistory[`${createdAt.getFullYear()}.${createdAt.getMonth() + 1}.${createdAt.getDate()}`] = [{
+  //         category, content, payment, amount, type,
+  //       }];
+  //     }
+  //   }
+  
   // 변경한 배열 생성해주는 로직 push -> concat
   history.forEach((element) => {
       const date = element.createdAt;
@@ -51,9 +62,9 @@ export const daysOfHistory = (history) => {
 
 export const getAllIncome = (history) => {
   let dayAllIncome = 0;
-  for (const item in history) {
-    if (item.type === '수입') {
-      dayAllIncome += item.amount;
+  for (const { amount, type } of history) {
+    if (type === '수입') {
+      dayAllIncome += amount;
     }
   }
 
@@ -62,9 +73,9 @@ export const getAllIncome = (history) => {
 
 export const getAllExpense = (history) => {
   let dayAllExpense = 0;
-  for (const item in history) {
-    if (item.type === '지출') {
-      dayAllExpense += item.amount;
+  for (const { amount, type } of history) {
+    if (type === '지출') {
+      dayAllExpense += amount;
     }
   }
 
