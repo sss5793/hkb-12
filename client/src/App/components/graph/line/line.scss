@@ -1,28 +1,32 @@
+$primaryColor: #87d0cb;
+
+@keyframes line-circle-fill {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .line {
   .chart {
     background: white;
     width: 100%;
-    //border-left: 1px dotted #555;
-    //border-bottom: 1px dotted #555;
     padding: 20px 20px 20px 0;
   }
 
   .labels.x-labels {
-    //text-anchor: middle;
-    border-top: 1px dotted #555;
   }
 
   .labels.y-labels {
-    //text-anchor: end;
-    border-right: 1px dotted #555;
   }
 
 
   .graph {
     height: 500px;
     width: 800px;
-    border-left: 1px dotted #555;
-    border-bottom: 1px dotted #555;
+    animation: line-circle-fill 1s;
   }
 
    .grid {
@@ -32,11 +36,13 @@
   }
 
   .labels {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
   }
 
-  .data {
-    fill: red;
+  .circle {
+    fill: #fff;
+    stroke: $primaryColor;
     stroke-width: 1;
+    animation: line-circle-fill 1s;
   }
 }

@@ -1,4 +1,6 @@
-@keyframes bar-chart-fill {
+$primaryColor: #87d0cb;
+
+@keyframes bar-chart-left {
   from {
     left: -500px;
   }
@@ -7,24 +9,50 @@
   }
 }
 
+@keyframes bar-chart-fill {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-.graph {
+.bar_graph {
+  border-top: 2px solid #d8d9dd;
+  border-bottom: 2px solid #d8d9dd;
+  padding-top: 10px;
   .bar {
     fill: #aaa;
-    height: 21px;
-    animation: bar-chart-fill 1s;
+    width: 100%;
+    animation: bar-chart-left 1s;
     transition: fill 1s ease;
     cursor: pointer;
     font-family: Helvetica, sans-serif;
-    position: relative;
 
+    rect{
+      &:hover {
+        animation: bar-chart-fill 1s;
+      }
+    }
     text {
       fill: #555;
-      font-size: 0.2rem;
+      font-size: 0.15rem;
     }
 
-    &:hover {
-      fill: #0074d9;
+    .percent {
+      fill : $primaryColor;
+    }
+
+    .amount {
+      width: 100%;
+      text-align: right;
     }
   }
+  .grid {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 0.1;
+  }
 }
+

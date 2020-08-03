@@ -20,7 +20,7 @@ const Line = () => {
     }
   }
 
-  // x 초기 51, y 초기 209
+  // 데이터 형태 => x 초기 51, y 초기 209
   const data = [
     '51,209',
     '80,190',
@@ -54,14 +54,14 @@ const Line = () => {
             <g class="graph">
               <polyline
                fill="none"
-               stroke="#0074d9"
+               stroke="#87d0cb"
                stroke-width="2"
                stroke-linecap="round"
                points="${data.join(" ")}"
                x="50"
                />
             </g>
-            <g class="data" data-setname="Our first data set">
+            <g class="circle" data-setname="Our first data set">
               ${data.map((item) => `<circle cx=${item.split(',')[0]} cy=${item.split(',')[1]} r="2"></circle>`)}
             </g>
         </svg>
