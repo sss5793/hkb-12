@@ -1,0 +1,65 @@
+$primaryColor: #0074d9;
+
+
+.circle {
+  .chart {
+    margin: 0 auto;
+    transform: rotate(-90deg);
+    background: #ddd;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .pie {
+    fill: #ddd;
+    stroke: $primaryColor;
+    stroke-width: 50;
+    stroke-dasharray: calc((10 * 147) / 100) 147;
+    transition: stroke-dasharray .3s ease;
+  }
+
+  .pie2 {
+    fill: #ddd;
+    stroke: #29b7ae;
+    stroke-width: 50;
+    stroke-dasharray: calc((20 * 147) / 100) 147;
+    transition: stroke-dasharray .3s ease;
+  }
+
+  .pie3 {
+    fill: #ddd;
+    stroke: #ffffff;
+    stroke-width: 50;
+    stroke-dasharray: calc((30 * 147) / 100) 147;
+    transition: stroke-dasharray .3s ease;
+  }
+
+  .buttons {
+    margin-bottom: 30px;
+  }
+
+  button {
+    text-transform: capitalize;
+    font-size: 13px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border: none;
+    margin-right: 5px;
+    background-color: transparent;
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 2px;
+    transition: background-color .1s ease, color .2s ease;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &.active {
+      font-weight: 400;
+      background-color: $primaryColor;
+      color: white;
+    }
+  }
+}
+

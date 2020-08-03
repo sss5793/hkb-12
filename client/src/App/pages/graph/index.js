@@ -1,5 +1,10 @@
-const Graph = () => (
-  '<div class="graph">통계 페이지</div>'
+import { Graph } from '../../components';
+
+const GraphPage = () => (
+  `<div class="graph">
+     ${Graph.Circle()}
+     ${Graph.Bar()}
+   </div>`
 );
 
-export default Graph;
+export default GraphPage;

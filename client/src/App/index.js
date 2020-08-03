@@ -70,12 +70,15 @@ const App = () => {
     if (window.location.pathname === '/graph') {
       window.history.pushState('graph', '', '/graph');
       setState('path', 'graph');
+      pageRoute('graph');
     } else if (window.location.pathname === '/calendar') {
       window.history.pushState('calendar', '', '/calendar');
       setState('path', 'calendar');
+      pageRoute('graph');
     } else {
       window.history.pushState('hbk', '', '/');
       setState('path', 'hbk');
+      pageRoute('graph');
     }
     registerEvent('path', pageRoute);
   });

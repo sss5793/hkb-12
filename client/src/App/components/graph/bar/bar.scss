@@ -1,0 +1,12 @@
+.bar {
+  fill: #aaa;
+  height: 21px;
+  transition: fill .3s ease;
+  cursor: pointer;
+  font-family: Helvetica, sans-serif;
+
+  text {
+    fill: #555;
+    font-size: 0.2rem;
+  }
+}

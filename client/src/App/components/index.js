@@ -3,6 +3,7 @@ import HkbForm from './hkbForm';
 import HkbSum from './hkbSum';
 import DailyHistory from './dailyHistory';
 import Calendar from './calendar';
+import * as Graph from './graph';
 
 export {
   Layout,
@@ -10,4 +11,5 @@ export {
   HkbSum,
   DailyHistory,
   Calendar,
+  Graph,
 };
