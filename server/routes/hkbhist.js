@@ -1,5 +1,5 @@
 const express = require('express');
-const hkbHistController = require('../controllers/hkbHistController');
+const hkbHistController = require('../controllers/hkbhist-controller');
 
 const router = express.Router();
 

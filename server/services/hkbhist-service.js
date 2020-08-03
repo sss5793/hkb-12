@@ -1,4 +1,4 @@
-const hkbHistRepo = require('../repository/hkbHistRepo');
+const hkbHistRepo = require('../repository/hkbhist-repo');
 
 async function findHkbHistByUserId(userId) {
   const hkbHist = await hkbHistRepo.findHkbHistByUserId(userId);

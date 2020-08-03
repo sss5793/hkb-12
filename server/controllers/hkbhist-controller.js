@@ -1,5 +1,5 @@
 const { HkbHistDTO } = require('../models');
-const HkbHistService = require('../services/hkbHistService');
+const HkbHistService = require('../services/hkbhist-service');
 
 async function findHkbHistByUserId(req, res) {
   try {
