@@ -3,7 +3,7 @@ import {
 } from '../../components';
 import { getState } from '../../store';
 import {
-  daysOfHistory, getAllIncome, getAllExpense, getMonthHistory,
+  getDaysHistory, getAllIncome, getAllExpense, getMonthHistory,
 } from '../../utils';
 
 const HkbPage = () => {
@@ -23,7 +23,7 @@ const HkbPage = () => {
       <div class='history_list'>
         ${days.map((day) => DailyHistory(new Date(day), daysHistory[day])).join('')}
       </div>
-    </div>$
+    </div>
   `);
 };
 
