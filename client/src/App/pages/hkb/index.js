@@ -3,7 +3,7 @@ import {
   HkbForm, HkbSum, DailyHistory,
 } from '../../components';
 import { getState } from '../../store';
-import { daysOfHistory, getAllIncome, getAllExpense } from '../../utils';
+import { getDaysHistory, getAllIncome, getAllExpense } from '../../utils';
 
 const HkbPage = () => {
   const currentMonth = getState('currentMonth');
@@ -14,14 +14,15 @@ const HkbPage = () => {
   const monthIncome = getAllIncome(monthHistory);
   const monthExpense = getAllExpense(monthHistory);
 
-  const daysHistory = daysOfHistory(monthHistory).reverse();
+  const daysHistory = getDaysHistory(monthHistory);
+  const days = Object.keys(daysHistory).sort().reverse();
 
   return (`
     <div class="hkb_page">
       ${HkbForm()}
       ${HkbSum(monthIncome, monthExpense)}
       <div class='history_list'>
-        ${daysHistory.map((item) => DailyHistory(item)).join('')}
+        ${days.map((day) => DailyHistory(new Date(day), daysHistory[day])).join('')}
       </div>
     </div>
   `);
