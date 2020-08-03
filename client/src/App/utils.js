@@ -22,25 +22,6 @@ export const getWeek = (date) => {
   return dayOfWeek;
 };
 
-export const daysOfHistory = (history) => {
-  const daysHistory = {};
-  for (const {
-    createdAt, category, content, payment, amount, type,
-  } of history) {
-    if (daysHistory.hasOwnProperty(createdAt)) {
-      daysHistory[createdAt].push({
-        category, content, payment, amount, type,
-      });
-    } else {
-      daysHistory[createdAt] = [{
-        category, content, payment, amount, type,
-      }];
-    }
-  }
-
-  return daysHistory;
-};
-
 // 해당 달에 맞는 히스토리 필터링
 export const getMonthHistory = (month, history) => history.filter(
   (item) => item.createdAt.getMonth() + 1 === month,
