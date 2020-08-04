@@ -1,7 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy;
+const GithubStrategy = require('passport-github').Strategy;
 const userRepo = require('../repository/user-repo');
 
-const local = (passport) => {
+const localLogin = (passport) => {
   passport.use(new LocalStrategy({
     // form에서 id와 pw를 가져옵니다.
     usernameField: 'id',
@@ -19,6 +20,23 @@ const local = (passport) => {
   })));
 };
 
+const githubLogin = (passport) => {
+  passport.use(new GithubStrategy({
+    clientID: process.env.GH_ID,
+    clientSecret: process.env.GH_KEY,
+    callbackURL: 'http://localhost:3000/auth/github/callback',
+  }, // 인증 요청
+  ((accessToken, refreshToken, profile, done) => {
+    console.log(profile);
+    const userId = profile.id;
+    const name = profile.username;
+    // const profileImageUrl = profile.photos[0].value;
+    const user = { userId, name };
+    done(null, user);
+  })));
+};
+
 module.exports = {
-  local,
+  localLogin,
+  githubLogin,
 };

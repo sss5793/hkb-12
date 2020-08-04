@@ -10,7 +10,7 @@ const indexRouter = require('./routes/index');
 const app = express();
 // 세션 설정
 app.use(session({
-  secret: 'cats',
+  secret: process.env.SESSION_KEY,
   resave: true,
   saveUninitialized: false,
 })); // 세션 활성화

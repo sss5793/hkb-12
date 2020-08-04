@@ -1,4 +1,4 @@
-const { local } = require('./services/user-service');
+const { localLogin, githubLogin } = require('./services/user-service');
 
 module.exports = (passport) => {
   // user-service에서 local 인증 성공시,
@@ -14,5 +14,6 @@ module.exports = (passport) => {
     done(null, user);
   });
 
-  local(passport);
+  localLogin(passport);
+  githubLogin(passport);
 };
