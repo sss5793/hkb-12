@@ -21,16 +21,29 @@ $primaryColor: #87d0cb;
 .bar_graph {
   border-top: 2px solid #d8d9dd;
   border-bottom: 2px solid #d8d9dd;
-  padding-top: 10px;
+  // padding-top: 10px;
   .bar {
-    fill: #aaa;
     width: 100%;
-    animation: bar-chart-left 1s;
-    transition: fill 1s ease;
-    cursor: pointer;
-    font-family: Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 
-    rect{
+    &:last-child {
+      border: 0;
+    }
+    // fill: #aaa;
+    // width: 100%;
+    // animation: bar-chart-left 1s;
+    // transition: fill 1s ease;
+    // cursor: pointer;
+    // font-family: Helvetica, sans-serif;
+
+    svg {
+      width: 100%;
+    }
+
+    rect {
       &:hover {
         animation: bar-chart-fill 1s;
       }
@@ -40,19 +53,22 @@ $primaryColor: #87d0cb;
       font-size: 0.15rem;
     }
 
+    .name {
+      width: 6em;
+      flex-shrink: 0;
+      // fill: $primaryColor;
+    }
+
     .percent {
-      fill : $primaryColor;
+      width: 3em;
+      flex-shrink: 0;
+      color: $primaryColor;
     }
 
     .amount {
-      width: 100%;
+      width: 10em;
+      flex-shrink: 0;
       text-align: right;
     }
   }
-  .grid {
-    stroke: #ccc;
-    stroke-dasharray: 0;
-    stroke-width: 0.1;
-  }
 }
-

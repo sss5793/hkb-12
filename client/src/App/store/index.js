@@ -23,6 +23,51 @@ const observer = {
     data: 'category',
     eventHandler: () => {},
   },
+  category: {
+    data: [
+      {
+        name: '월급',
+        type: '수입',
+      },
+      {
+        name: '용돈',
+        type: '수입',
+      },
+      {
+        name: '기타수입',
+        type: '수입',
+      },
+      {
+        name: '식비',
+        type: '지출',
+      },
+      {
+        name: '생활',
+        type: '지출',
+      },
+      {
+        name: '쇼핑/뷰티',
+        type: '지출',
+      },
+      {
+        name: '교통',
+        type: '지출',
+      },
+      {
+        name: '의료/건강',
+        type: '지출',
+      },
+      {
+        name: '문화/여가',
+        type: '지출',
+      },
+      {
+        name: '미분류',
+        type: '지출',
+      },
+    ],
+    eventHandler: () => {},
+  },
   hkbHistory: {
     data: [
       {

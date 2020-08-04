@@ -1,17 +1,14 @@
 import './expenseFilter.scss';
-import { getAllExpense, numberWithCommas } from "../../utils";
-import {getState, registerEvent} from "../../store";
-import {Graph} from "../index";
+import { getAllExpense, numberWithCommas } from '../../utils';
+import { getState } from '../../store';
 
 const ExpenseFilter = () => {
   const currentMonth = getState('currentMonth');
   const hkbHistory = getState('hkbHistory');
-  const monthHistory = hkbHistory.filter(
-  (item) => item.createdAt.getMonth() + 1 === currentMonth,
-  );
+  const monthHistory = hkbHistory.filter((item) => item.createdAt.getMonth() + 1 === currentMonth);
   const monthExpense = getAllExpense(monthHistory);
 
-  return`
+  return `
     <div class="expense_filter">
         <div class="filter">
             <div class="radio expense_type_category">
@@ -32,7 +29,7 @@ const ExpenseFilter = () => {
           </div>
         </div>
     </div>
-  `
+  `;
 };
 
 export default ExpenseFilter;

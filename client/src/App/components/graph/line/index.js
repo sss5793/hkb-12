@@ -1,22 +1,22 @@
 import './line.scss';
-import { getState } from "../../../store";
+import { getState } from '../../../store';
 
 const Line = () => {
   const currentMonth = getState('currentMonth');
-  const lastDate = new Date( '2020', currentMonth, 0).getDate();
+  const lastDate = new Date('2020', currentMonth, 0).getDate();
   const maxAmount = 200;
 
   let xLabel = [];
-  for(let i=1; i <= lastDate; i++){
-    if(i%5 === 1) {
-      xLabel = [ ...xLabel, i ]
+  for (let i = 1; i <= lastDate; i++) {
+    if (i % 5 === 1) {
+      xLabel = [...xLabel, i];
     }
   }
 
   let yLabel = [];
-  for(let i=maxAmount; i >= 0; i--){
-    if(i%20 === 0) {
-      yLabel = [ ...yLabel, i ]
+  for (let i = maxAmount; i >= 0; i--) {
+    if (i % 20 === 0) {
+      yLabel = [...yLabel, i];
     }
   }
 
@@ -36,7 +36,7 @@ const Line = () => {
   ];
 
   const yMax = 10 + (yLabel.length - 1) * 20;
-  return(`
+  return `
     <div class="line">
         <svg viewBox="0 0 500 250" class="chart">
             <g class="grid x-grid" id="xGrid">
@@ -46,10 +46,22 @@ const Line = () => {
               <line x1="50" x2="500" y1=${yMax} y2=${yMax}></line>
             </g>
             <g class="labels x-labels">
-                ${xLabel.map((item, index) => `<text x=${100 + index * 50} y=${yMax + 20}>${currentMonth+'.'+item}</text>`).join('')}
+                ${xLabel
+                  .map(
+                    (item, index) =>
+                      `<text x=${100 + index * 50} y=${yMax + 20}>${
+                        currentMonth + '.' + item
+                      }</text>`
+                  )
+                  .join('')}
             </g>
             <g class="labels y-labels">
-              ${yLabel.map((item, index) => `<text x="0" y=${10 + index * 20}>${item}만원</text>`).join('')}
+              ${yLabel
+                .map(
+                  (item, index) =>
+                    `<text x="0" y=${10 + index * 20}>${item}만원</text>`
+                )
+                .join('')}
             </g>
             <g class="graph">
               <polyline
@@ -57,16 +69,21 @@ const Line = () => {
                stroke="#87d0cb"
                stroke-width="2"
                stroke-linecap="round"
-               points="${data.join(" ")}"
+               points="${data.join(' ')}"
                x="50"
                />
             </g>
             <g class="circle" data-setname="Our first data set">
-              ${data.map((item) => `<circle cx=${item.split(',')[0]} cy=${item.split(',')[1]} r="2"></circle>`)}
+              ${data.map(
+                (item) =>
+                  `<circle cx=${item.split(',')[0]} cy=${
+                    item.split(',')[1]
+                  } r="2"></circle>`
+              )}
             </g>
         </svg>
     </div>
-  `)
-}
+  `;
+};
 
 export default Line;
