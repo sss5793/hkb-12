@@ -14,7 +14,10 @@ async function findHkbHistByUserId(req, res) {
 async function createHkbHist(req, res) {
   try {
     // req.body
-    res.status(200).json({ success: true, payload: null });
+    const userId = 'admin';
+    const data = { ...req.body, userId };
+    await HkbHistService.createHkbHist(data);
+    res.status(200).json({ success: true });
   } catch (err) {
     res.status(500).json({ success: false, message: err });
   }

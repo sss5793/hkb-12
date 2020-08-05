@@ -22,7 +22,7 @@ const DailyHistory = (date, data) => {
         <span class='income_amount'>+${numberWithCommas(dayAllIncome)}원</span>
         <span class='expense_amount'>-${numberWithCommas(dayAllExpense)}원</span>
       </th>
-      ${data.map((item) => CaseHistory(item)).join('')}
+      ${data.reverse().map((item) => CaseHistory(item)).join('')}
     </table>
   `;
 };
