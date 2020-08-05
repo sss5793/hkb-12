@@ -37,10 +37,6 @@ const App = () => {
   app.addEventListener('click', (event) => {
     const { target } = event;
 
-    if (target.closest('.github-btn')) {
-      getLogin();
-    }
-
     // 페이지 네이게이션
     if (target.classList.contains('nav_btn')) {
       activeNavigation(target);
