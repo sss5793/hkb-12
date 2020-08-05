@@ -1,5 +1,6 @@
 import { GraphEvent, GraphMouseOver, GraphMouseOut } from './graph';
 import { HkbHistClickEvent, HkbHistInputEvent } from './hkbHist';
+import { NavigationEvent } from './navigation';
 
 export {
   GraphEvent,
@@ -7,4 +8,5 @@ export {
   GraphMouseOut,
   HkbHistClickEvent,
   HkbHistInputEvent,
+  NavigationEvent,
 };
