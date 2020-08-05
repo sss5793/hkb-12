@@ -2,6 +2,7 @@ import { getState, registerEvent, setState } from './store';
 import Route from './route';
 import './index.scss';
 import { Layout } from './components';
+import { getLogin } from './apis';
 
 const pageRoute = (path) => {
   const layout = document.querySelector('.contents');
@@ -16,14 +17,14 @@ const activeNavigation = (target) => {
 
 const setPageHistory = (target) => {
   if (target.id === 'page_nav_hkb') {
-    window.history.pushState('hbk', '', '/');
-    setState('path', 'hbk');
+    window.history.pushState('/hbk', '', '/');
+    setState('path', '/hbk');
   } else if (target.id === 'page_nav_calendar') {
-    window.history.pushState('calendar', '', '/calendar');
-    setState('path', 'calendar');
+    window.history.pushState('/calendar', '', '/calendar');
+    setState('path', '/calendar');
   } else if (target.id === 'page_nav_graph') {
-    window.history.pushState('graph', '', '/graph');
-    setState('path', 'graph');
+    window.history.pushState('/graph', '', '/graph');
+    setState('path', '/graph');
   }
 };
 
@@ -35,6 +36,10 @@ const App = () => {
   // 액션 등록
   app.addEventListener('click', (event) => {
     const { target } = event;
+
+    if (target.closest('.github-btn')) {
+      getLogin();
+    }
 
     // 페이지 네이게이션
     if (target.classList.contains('nav_btn')) {
@@ -71,14 +76,14 @@ const App = () => {
 
   window.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname === '/graph') {
-      window.history.pushState('graph', '', '/graph');
-      setState('path', 'graph');
+      window.history.pushState('/graph', '', '/graph');
+      setState('path', '/graph');
     } else if (window.location.pathname === '/calendar') {
-      window.history.pushState('calendar', '', '/calendar');
-      setState('path', 'calendar');
+      window.history.pushState('/calendar', '', '/calendar');
+      setState('path', '/calendar');
     } else {
-      window.history.pushState('hbk', '', '/');
-      setState('path', 'hbk');
+      window.history.pushState('/hbk', '', '/');
+      setState('path', '/hbk');
     }
     registerEvent('path', pageRoute);
   });
@@ -90,7 +95,7 @@ const App = () => {
   });
 
   // return Route(path);
-  return Layout(Route(path));
+  return path === '/' ? Route(path) : Layout(Route(path));
 };
 
 export default App;

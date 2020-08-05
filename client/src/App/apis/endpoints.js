@@ -44,4 +44,9 @@ export const EndPoints = {
     method : 'POST',
     url: 'api/user',
   },
+  // 새로운 사용자를 등록합니다.
+  GET_LOGIN :{
+    method : 'GET',
+    url: 'api/user/login',
+  },
 };

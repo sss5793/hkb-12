@@ -7,4 +7,4 @@ async function findHkbHistByUserId(userId) {
 
 module.exports = {
   findHkbHistByUserId,
-}
+};

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -24,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/public')));
-
+app.use(cors());
 app.use('/api', indexRouter);
 
 app.get('*', (req, res) => {

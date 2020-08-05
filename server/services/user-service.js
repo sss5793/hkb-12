@@ -24,10 +24,9 @@ const githubLogin = (passport) => {
   passport.use(new GithubStrategy({
     clientID: process.env.GH_ID,
     clientSecret: process.env.GH_KEY,
-    callbackURL: 'http://localhost:3000/auth/github/callback',
+    callbackURL: '/',
   }, // 인증 요청
   ((accessToken, refreshToken, profile, done) => {
-    console.log(profile);
     const userId = profile.id;
     const name = profile.username;
     // const profileImageUrl = profile.photos[0].value;
