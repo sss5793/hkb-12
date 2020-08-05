@@ -11,7 +11,7 @@ const setPageHistory = (target) => {
     window.history.pushState('/hkb', '', '/hkb');
     setState('path', '/hkb');
   } else if (target.id === 'page_nav_calendar') {
-    window.history.pushState('calendar', '', '/calendar');
+    window.history.pushState('/calendar', '', '/calendar');
     setState('path', '/calendar');
   } else if (target.id === 'page_nav_graph') {
     window.history.pushState('/graph', '', '/graph');
