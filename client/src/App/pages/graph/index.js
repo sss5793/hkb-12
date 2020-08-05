@@ -1,6 +1,7 @@
 import './graph.scss';
 import { Graph, ExpenseFilter } from '../../components';
 import { getState, registerEvent } from '../../store';
+import { getMonthHistory } from '../../utils';
 
 const GraphPage = () => {
   const expenseType = getState('expenseType');
@@ -9,10 +10,7 @@ const GraphPage = () => {
   // 1. 지출 데이터만 가져온다.
   const currentMonth = getState('currentMonth');
   const hkbHistory = getState('hkbHistory');
-  const monthHistory = hkbHistory.filter(
-    (item) => item.createdAt.getMonth() + 1 === currentMonth
-  );
-  // console.log(monthHistory, category);
+  const monthHistory = getMonthHistory(currentMonth, hkbHistory);
   // 2. 카테고리 별로 amount를 계산한다.
   const expenseCategory = category.filter((item) => item.type === '지출');
   let categoryHistList = [];
@@ -31,7 +29,8 @@ const GraphPage = () => {
   // console.log(categoryHistList);
   // 3. 계산한 amount로 percent를 구한다.
 
-  const circleBar = Graph.Circle(categoryHistList) + Graph.Bar(categoryHistList);
+  const circleBar =
+    Graph.Circle(categoryHistList) + Graph.Bar(categoryHistList);
   const expenseTypeContents =
     expenseType === 'category' ? circleBar : Graph.Line();
 
