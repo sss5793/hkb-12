@@ -25,7 +25,13 @@ const App = () => {
   app.addEventListener('click', NavigationEvent);
 
   window.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname === '/graph') {
+    if (window.location.pathname === '/hkb') {
+      window.history.pushState('/hkb', '', '/hkb');
+      setState('path', '/hkb');
+      pageRoute('/hkb');
+      app.addEventListener('click', HkbHistClickEvent);
+      app.addEventListener('input', HkbHistInputEvent);
+    } else if (window.location.pathname === '/graph') {
       window.history.pushState('/graph', '', '/graph');
       setState('path', '/graph');
       pageRoute('/graph');
@@ -37,11 +43,8 @@ const App = () => {
       setState('path', '/calendar');
       pageRoute('/calendar');
     } else {
-      window.history.pushState('/hbk', '', '/');
-      setState('path', '/hbk');
-      pageRoute('/hbk');
-      app.addEventListener('click', HkbHistClickEvent);
-      app.addEventListener('input', HkbHistInputEvent);
+      window.history.pushState('/', '', '/');
+      setState('path', '/');
     }
     registerEvent('path', pageRoute);
   });

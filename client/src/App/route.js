@@ -3,7 +3,7 @@ import { Hkb, CalendarPage, Graph, Login } from './pages';
 const Route = (path) => {
   let page;
   switch (path) {
-    case '/hbk':
+    case '/hkb':
       page = Hkb();
       break;
     case '/calendar':
