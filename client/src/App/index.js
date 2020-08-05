@@ -53,7 +53,7 @@ const App = () => {
   });
 
   // return Route(path);
-  return Layout(Route(path));
+  return path === '/' ? Route(path) : Layout(Route(path));
 };
 
 export default App;

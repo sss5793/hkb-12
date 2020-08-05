@@ -74,10 +74,9 @@ export const getAllPercent = (history) => {
   history.map((item) => {
     total += parseInt(item.amount);
   });
-  console.log(total);
   const allPercent = history.map((item) => ({
     ...item,
-    percent: (parseInt(item.amount) / total) * 100,
+    percent: Math.round((parseInt(item.amount) / total) * 100),
   }));
 
   return allPercent;

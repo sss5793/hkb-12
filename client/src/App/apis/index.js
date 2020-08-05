@@ -21,3 +21,13 @@ export const createHkbHist = async (data) => {
   console.log(res);
   return res;
 };
+
+export const getLogin = async () => {
+  const res = await fetch(EndPoints.GET_LOGIN.url, {
+    method: EndPoints.GET_LOGIN.method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
+};
