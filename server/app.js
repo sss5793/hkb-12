@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
+const { ensureAuthenticated } = require('./middleware');
 
 const indexRouter = require('./routes/index');
 
@@ -16,7 +17,7 @@ app.use(
     secret: process.env.SESSION_KEY,
     resave: true,
     saveUninitialized: false,
-  })
+  }),
 ); // 세션 활성화
 
 require('./passport')(passport);
@@ -30,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use('/api', indexRouter);
 
-app.get('*', (req, res) => {
+app.get('*', ensureAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public', 'index.html'));
 });
 
