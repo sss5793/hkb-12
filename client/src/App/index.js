@@ -26,20 +26,20 @@ const App = () => {
 
   window.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname === '/graph') {
-      window.history.pushState('graph', '', '/graph');
-      setState('path', 'graph');
-      pageRoute('graph');
+      window.history.pushState('/graph', '', '/graph');
+      setState('path', '/graph');
+      pageRoute('/graph');
       app.addEventListener('click', GraphEvent);
       app.addEventListener('mouseover', GraphMouseOver);
       app.addEventListener('mouseout', GraphMouseOut);
     } else if (window.location.pathname === '/calendar') {
-      window.history.pushState('calendar', '', '/calendar');
-      setState('path', 'calendar');
-      pageRoute('calendar');
+      window.history.pushState('/calendar', '', '/calendar');
+      setState('path', '/calendar');
+      pageRoute('/calendar');
     } else {
-      window.history.pushState('hbk', '', '/');
-      setState('path', 'hbk');
-      pageRoute('hbk');
+      window.history.pushState('/hbk', '', '/');
+      setState('path', '/hbk');
+      pageRoute('/hbk');
       app.addEventListener('click', HkbHistClickEvent);
       app.addEventListener('input', HkbHistInputEvent);
     }

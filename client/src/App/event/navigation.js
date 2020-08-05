@@ -8,14 +8,14 @@ const activeNavigation = (target) => {
 
 const setPageHistory = (target) => {
   if (target.id === 'page_nav_hkb') {
-    window.history.pushState('hbk', '', '/');
-    setState('path', 'hbk');
+    window.history.pushState('/hbk', '', '/');
+    setState('path', '/hbk');
   } else if (target.id === 'page_nav_calendar') {
     window.history.pushState('calendar', '', '/calendar');
-    setState('path', 'calendar');
+    setState('path', '/calendar');
   } else if (target.id === 'page_nav_graph') {
-    window.history.pushState('graph', '', '/graph');
-    setState('path', 'graph');
+    window.history.pushState('/graph', '', '/graph');
+    setState('path', '/graph');
   }
 };
 
