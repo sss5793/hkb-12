@@ -1,19 +1,19 @@
-import { Hkb, CalendarPage, Graph } from './pages';
+import { Hkb, CalendarPage, Graph, Login } from './pages';
 
 const Route = (path) => {
   let page;
   switch (path) {
-    case 'hbk':
+    case '/hbk':
       page = Hkb();
       break;
-    case 'calendar':
+    case '/calendar':
       page = CalendarPage();
       break;
-    case 'graph':
+    case '/graph':
       page = Graph();
       break;
     default:
-      page = Hkb();
+      page = Login();
   }
 
   return page;
