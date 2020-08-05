@@ -1,0 +1,48 @@
+$primaryColor: #87d0cb;
+
+@keyframes line-circle-fill {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.line {
+  .chart {
+    background: white;
+    width: 100%;
+    padding: 20px 20px 20px 0;
+  }
+
+  .labels.x-labels {
+  }
+
+  .labels.y-labels {
+  }
+
+
+  .graph {
+    height: 500px;
+    width: 800px;
+    animation: line-circle-fill 1s;
+  }
+
+   .grid {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 1;
+  }
+
+  .labels {
+    font-size: 0.7rem;
+  }
+
+  .circle {
+    fill: #fff;
+    stroke: $primaryColor;
+    stroke-width: 1;
+    animation: line-circle-fill 1s;
+  }
+}

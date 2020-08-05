@@ -2,7 +2,13 @@ import { getState, registerEvent, setState } from './store';
 import Route from './route';
 import './index.scss';
 import { Layout } from './components';
-import { getLogin } from './apis';
+import {
+  GraphEvent,
+  HkbHistClickEvent,
+  HkbHistInputEvent,
+  GraphMouseOver,
+  GraphMouseOut,
+} from './event';
 
 const pageRoute = (path) => {
   const layout = document.querySelector('.contents');
@@ -72,14 +78,22 @@ const App = () => {
 
   window.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname === '/graph') {
-      window.history.pushState('/graph', '', '/graph');
-      setState('path', '/graph');
+      window.history.pushState('graph', '', '/graph');
+      setState('path', 'graph');
+      pageRoute('graph');
+      app.addEventListener('click', GraphEvent);
+      app.addEventListener('mouseover', GraphMouseOver);
+      app.addEventListener('mouseout', GraphMouseOut);
     } else if (window.location.pathname === '/calendar') {
-      window.history.pushState('/calendar', '', '/calendar');
-      setState('path', '/calendar');
+      window.history.pushState('calendar', '', '/calendar');
+      setState('path', 'calendar');
+      pageRoute('calendar');
     } else {
-      window.history.pushState('/hbk', '', '/');
-      setState('path', '/hbk');
+      window.history.pushState('hbk', '', '/');
+      setState('path', 'hbk');
+      pageRoute('hbk');
+      app.addEventListener('click', HkbHistClickEvent);
+      app.addEventListener('input', HkbHistInputEvent);
     }
     registerEvent('path', pageRoute);
   });
