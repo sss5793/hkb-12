@@ -14,6 +14,20 @@ import {
 const pageRoute = (path) => {
   const layout = document.querySelector('.contents');
   layout.innerHTML = Route(path);
+  if (path === '/graph') {
+    const graphPage = document.querySelector('.graph');
+    graphPage.addEventListener('click', GraphEvent);
+    graphPage.addEventListener('mouseover', GraphMouseOver);
+    graphPage.addEventListener('mouseout', GraphMouseOut);
+  } else if (path === '/calendar') {
+
+  } else if (path === '/hkb') {
+    const hkbPage = document.querySelector('.hkb_page');
+    hkbPage.addEventListener('click', HkbHistClickEvent);
+    hkbPage.addEventListener('input', HkbHistInputEvent);
+  } else {
+
+  }
 };
 
 const App = () => {
@@ -29,15 +43,10 @@ const App = () => {
       window.history.pushState('/hkb', '', '/hkb');
       setState('path', '/hkb');
       pageRoute('/hkb');
-      app.addEventListener('click', HkbHistClickEvent);
-      app.addEventListener('input', HkbHistInputEvent);
     } else if (window.location.pathname === '/graph') {
       window.history.pushState('/graph', '', '/graph');
       setState('path', '/graph');
       pageRoute('/graph');
-      app.addEventListener('click', GraphEvent);
-      app.addEventListener('mouseover', GraphMouseOver);
-      app.addEventListener('mouseout', GraphMouseOut);
     } else if (window.location.pathname === '/calendar') {
       window.history.pushState('/calendar', '', '/calendar');
       setState('path', '/calendar');
