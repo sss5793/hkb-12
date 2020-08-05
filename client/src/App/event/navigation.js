@@ -8,8 +8,8 @@ const activeNavigation = (target) => {
 
 const setPageHistory = (target) => {
   if (target.id === 'page_nav_hkb') {
-    window.history.pushState('/hbk', '', '/');
-    setState('path', '/hbk');
+    window.history.pushState('/hkb', '', '/hkb');
+    setState('path', '/hkb');
   } else if (target.id === 'page_nav_calendar') {
     window.history.pushState('calendar', '', '/calendar');
     setState('path', '/calendar');

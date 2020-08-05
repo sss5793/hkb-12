@@ -37,9 +37,9 @@ const App = () => {
       setState('path', '/calendar');
       pageRoute('/calendar');
     } else {
-      window.history.pushState('/hbk', '', '/');
-      setState('path', '/hbk');
-      pageRoute('/hbk');
+      window.history.pushState('/hkb', '', '/hkb');
+      setState('path', '/hkb');
+      pageRoute('/hkb');
       app.addEventListener('click', HkbHistClickEvent);
       app.addEventListener('input', HkbHistInputEvent);
     }
