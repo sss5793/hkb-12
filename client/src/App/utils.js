@@ -12,7 +12,8 @@ export const numberWithCommas = (num) => {
 };
 
 export const getMonth = (date) => {
-  const month = date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+  const month =
+    date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
   return month;
 };
 
@@ -66,4 +67,40 @@ export const getAllExpense = (history) => {
   }
 
   return dayAllExpense;
+};
+
+export const getAllPercent = (history) => {
+  let total = 0;
+  history.map((item) => {
+    total += parseInt(item.amount);
+  });
+  console.log(total);
+  const allPercent = history.map((item) => ({
+    ...item,
+    percent: (parseInt(item.amount) / total) * 100,
+  }));
+
+  return allPercent;
+};
+
+export const createDashArray = (history) => {
+  let prevPercent = 0;
+  const arr = history.map((item, index) => {
+    let dasharray = '0 0 0 0';
+    if (index === 0) {
+      dasharray = `${item.percent} ${100 - item.percent} 0 0`;
+    } else {
+      dasharray = `0 ${prevPercent} ${item.percent} ${
+        100 - prevPercent - item.percent
+      }`;
+    }
+
+    prevPercent = item.percent;
+    return {
+      ...item,
+      dasharray,
+    };
+  });
+
+  return arr;
 };
