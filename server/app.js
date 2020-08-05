@@ -9,12 +9,15 @@ const passport = require('passport');
 const indexRouter = require('./routes/index');
 
 const app = express();
+app.use(cors());
 // 세션 설정
-app.use(session({
-  secret: process.env.SESSION_KEY,
-  resave: true,
-  saveUninitialized: false,
-})); // 세션 활성화
+app.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    resave: true,
+    saveUninitialized: false,
+  })
+); // 세션 활성화
 
 require('./passport')(passport);
 
@@ -25,7 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/public')));
-app.use(cors());
 app.use('/api', indexRouter);
 
 app.get('*', (req, res) => {
