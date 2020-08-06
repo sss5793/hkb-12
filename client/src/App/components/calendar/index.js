@@ -1,4 +1,5 @@
 import './calendar.scss';
+import { getFullDate, getAllIncome, getAllExpense } from '../../utils';
 
 const today = new Date();
 const ko_days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
@@ -58,10 +59,17 @@ const setCalendarData = (year, month, history) => {
       // 일요일부터 다음달 날짜가 나올시, 그냥 리턴한다.
       if (j === 0 && className === 'future') break;
 
+      const date = getFullDate(new Date(`${year}.${mon}.${dayNum}`), '.');
+
       dayList.push(`
-        <div class='calendar__day ${en_days[j]} ${className}' id='${year}.${mon}.${dayNum}' style="display: flex;">
+        <div class='calendar__day ${en_days[j]} ${className}' id='${date}' style="display: flex;">
           <div>${dayNum}</div>
-          <div class="history">${history.hasOwnProperty(`${year}.${mon}.${dayNum}`) ? history[`${year}.${mon}.${dayNum}`].map((i) => `<div class=${i.type === '수입' ? 'income_amount' : 'expense_amount'}>${i.amount}</div>`).join('') : ''}</div>
+          <div class="history">${history.hasOwnProperty(date)
+    ? `<div class='income_amount'}>${getAllIncome(history[date]) !== 0 ? `+${getAllIncome(history[date])}` : ''}</div>
+      <div class='expense_amount'}>${getAllExpense(history[date]) !== 0 ? `-${getAllExpense(history[date])}` : ''}</div>
+    `
+    : ''}
+          </div>
         </div>
       `);
     }
