@@ -3,6 +3,7 @@ import { getState, setState, registerEvent } from '../../store';
 import { getDaysHistory, getAllIncome, getAllExpense, getMonthHistory } from '../../utils';
 
 const CalendarPage = () => {
+  const currentYear = getState('currentYear');
   const currentMonth = getState('currentMonth');
   const hkbHistory = getState('hkbHistory');
   setState('monthHistory', getMonthHistory(currentMonth, hkbHistory));
@@ -22,9 +23,10 @@ const CalendarPage = () => {
   function onChange() {
     const calendarPage = document.querySelector('.calendar_container');
     const initData = init();
+    const currentYear = getState('currentYear');
     const currentMonth = getState('currentMonth');
     const { monthIncome, monthExpense, daysHistory } = initData;
-    calendarPage.innerHTML = Calendar(currentMonth, daysHistory);
+    calendarPage.innerHTML = Calendar(currentYear, currentMonth, daysHistory);
     setState('allIncome', monthIncome);
     setState('allExpense', monthExpense);
   }
@@ -35,7 +37,7 @@ const CalendarPage = () => {
     <div class="calendar_page">
       ${HkbSum(monthIncome, monthExpense)}
       <div class='calendar_container'>
-        ${Calendar(currentMonth, daysHistory)}
+        ${Calendar(currentYear, currentMonth, daysHistory)}
       </div>
     </div>
   `);
