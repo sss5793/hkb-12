@@ -42,12 +42,12 @@ async function updateHkbHistById(id, data) {
   const conn = await pool.getConnection();
   try {
     console.log('repo', id, data);
-    const { category, payment, amount, created_at, content } = data;
+    const { category, payment, amount, createdAt, content } = data;
     await conn.query(
       `UPDATE HkbHist\
       SET category = ?, payment = ?, amount = ?, created_at = ?, content = ?\
       WHERE id = ?`,
-      [category, payment, amount, created_at, content, id]
+      [category, payment, amount, new Date(createdAt), content, id]
     );
   } catch (e) {
     console.log(e);
