@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-sequences */
 /* eslint-disable no-shadow */
+const UserService = require('../services/user-service');
 const passport = require('passport');
 
 function localLogin(req, res, next) {
@@ -11,10 +12,11 @@ function localLogin(req, res, next) {
   return res.json('welcome from local');
 }
 
-function githubLogin(req, res, next) {
+async function githubLogin(req, res, next) {
   if (!req.user) {
     return res.json('깃헙 로그인을 다시 해주세요');
   }
+  const user = await UserService.findUserById(req.user);
   return res.redirect('/hkb');
 }
 

@@ -26,7 +26,7 @@ $subColor : #93a7ce;
     .month_amount {
       display: flex;
 
-      .all_expense {
+      .month_all_expense {
         width: 10em;
         text-align: right;
         color: $baseColor;
@@ -39,7 +39,7 @@ $subColor : #93a7ce;
       color: $subColor;
       margin-top: 10px;
 
-      .all_expense {
+      .date_all_expense {
         width: 7em;
         text-align: right;
       }

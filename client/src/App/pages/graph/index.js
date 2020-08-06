@@ -1,7 +1,7 @@
 import './graph.scss';
 import { Graph, ExpenseFilter } from '../../components';
 import { getState, setState, registerEvent } from '../../store';
-import { getMonthHistory, getDateAverage, getAllExpense } from '../../utils';
+import { getMonthHistory, getAllExpense, getDateAverage, numberWithCommas } from '../../utils';
 
 const GraphPage = () => {
   const expenseType = getState('expenseType');
@@ -46,44 +46,34 @@ const GraphPage = () => {
     });
 
     const dateAverage = getDateAverage(dayHistory);
-    return { categoryHistList, dayHistory, dateAverage };
+    const monthExpense = getAllExpense(monthHistory);
+    return { categoryHistList, monthExpense, dayHistory, dateAverage };
   }
 
-  // let categoryHistList = [];
-  // expenseCategory.map((cate) => {
-  //   let categoryName = '';
-  //   let amount = 0;
-  //   monthHistory.map((item) => {
-  //     if (cate.name === item.category) {
-  //       categoryName = item.category;
-  //       amount += item.amount;
-  //     }
-  //   });
-  //   if (!categoryName) return;
-  //   categoryHistList = categoryHistList.concat({ name: categoryName, amount });
-  // });
-  // console.log(categoryHistList);
-  // 3. 계산한 amount로 percent를 구한다.
-
-  const { categoryHistList, dayHistory, dateAverage } = init();
+  const { categoryHistList, monthExpense, dayHistory, dateAverage } = init();
 
   const circleBar =
     Graph.Circle(categoryHistList) + Graph.Bar(categoryHistList);
   const expenseTypeContents =
     expenseType === 'category' ? circleBar : Graph.Line(dayHistory, dateAverage);
-
-  function onGraphChange(list, dayHistory, dateAverage ) {
+  
+  function onGraphChange(list, monthExpense, dayHistory, dateAverage) {
     const categoryType = Graph.Circle(list) + Graph.Bar(list);
     const type = getState('expenseType');
     const graphContainer = document.querySelector('.graph_container');
     const expenseTypeContent =
       type === 'category' ? categoryType : Graph.Line(dayHistory, dateAverage);
     graphContainer.innerHTML = expenseTypeContent;
+    // 지출 금액 바꾸기
+    const monthAllExpense = document.querySelector('.expense_filter .month_all_expense');
+    monthAllExpense.textContent = `${numberWithCommas(monthExpense)}원`;
+    const dateAllExpense = document.querySelector('.expense_filter .date_all_expense');
+    dateAllExpense.textContent = `${numberWithCommas(dateAverage)}원`;
   }
 
   function onChange() {
-    const { categoryHistList, dayHistory, dateAverage } = init();
-    onGraphChange(categoryHistList, dayHistory, dateAverage);
+    const { categoryHistList, monthExpense, dayHistory, dateAverage } = init();
+    onGraphChange(categoryHistList, monthExpense, dayHistory, dateAverage);
   }
 
   registerEvent('expenseType', onChange);
@@ -91,7 +81,7 @@ const GraphPage = () => {
 
   return `
         <div class="graph">
-          ${ExpenseFilter()}
+          ${ExpenseFilter(monthExpense, monthExpense)}
           <div class="graph_container">${expenseTypeContents}</div>
         </div>`;
 };
