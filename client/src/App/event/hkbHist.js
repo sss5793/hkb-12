@@ -20,8 +20,9 @@ async function getHkbHistory() {
       createdAt: new Date(item.createdAt),
     }));
     setState('hkbHistory', data);
+    const currentYear = getState('currentYear');
     const currentMonth = getState('currentMonth');
-    setState('monthHistory', getMonthHistory(currentMonth, data));
+    setState('monthHistory', getMonthHistory(currentYear, currentMonth, data));
   }
 }
 

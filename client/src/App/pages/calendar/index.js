@@ -6,7 +6,7 @@ const CalendarPage = () => {
   const currentYear = getState('currentYear');
   const currentMonth = getState('currentMonth');
   const hkbHistory = getState('hkbHistory');
-  setState('monthHistory', getMonthHistory(currentMonth, hkbHistory));
+  setState('monthHistory', getMonthHistory(currentYear, currentMonth, hkbHistory));
 
   function init() {
     const monthHistory = getState('monthHistory');
