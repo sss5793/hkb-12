@@ -15,56 +15,7 @@ const Circle = (data) => {
   const prevArr = getAllPercent(data);
   const arr = createDashArray(prevArr);
 
-  // const arr = [
-  //   {
-  //     name: '생활',
-  //     percent: 50,
-  //     amount: 50000,
-  //     dasharray: '50 50 0 0',
-  //   },
-  //   {
-  //     name: '교통',
-  //     percent: 20,
-  //     amount: 20000,
-  //     dasharray: '0 50 20 30',
-  //   },
-  //   {
-  //     name: '식비',
-  //     percent: 20,
-  //     amount: 10000,
-  //     dasharray: '0 70 20 10',
-  //   },
-  //   {
-  //     name: '쇼핑/뷰티',
-  //     percent: 4,
-  //     amount: 4000,
-  //     dasharray: '0 90 4 6',
-  //   },
-  //   {
-  //     name: '의료/건강',
-  //     percent: 2,
-  //     amount: 2000,
-  //     dasharray: '0 94 2 4',
-  //   },
-  //   {
-  //     name: '문화/여가',
-  //     percent: 2,
-  //     amount: 2000,
-  //     dasharray: '0 96 2 2',
-  //   },
-  //   {
-  //     name: '미분류',
-  //     percent: 2,
-  //     amount: 2000,
-  //     dasharray: '0 98 2 0',
-  //   },
-  // ];
-
-  let offset = 0;
-  const CircleItem = (item, index) => {
-    if (index !== 0) offset += -arr[index - 1].percent;
-    // const percent = index === arr.length - 1 ? 100 : item.percent;
-    return `<circle 
+  const CircleItem = (item, index) => `<circle 
         r="25%"
         cx="50%" 
         cy="50%" 
@@ -72,7 +23,6 @@ const Circle = (data) => {
         stroke-dasharray="${item.dasharray}"
         style="stroke:${fillColor[index]}"
         />`;
-  };
 
   const LabelItem = (item, index) => `
       <div class='item' id='item_${index + 1}'>
