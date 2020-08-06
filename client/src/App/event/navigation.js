@@ -1,4 +1,5 @@
 import { getState, setState } from '../store';
+import { getMonthHistory } from '../utils';
 
 const activeNavigation = (target) => {
   const navBtns = document.querySelectorAll('.nav_btn');
@@ -41,6 +42,8 @@ export const NavigationEvent = (e) => {
       setState('currentYear', currentYear - 1);
     }
     setState('currentMonth', changeMonth);
+    const hkbHistory = getState('hkbHistory');
+    setState('monthHistory', getMonthHistory(changeMonth, hkbHistory));
   }
   if (target === nextMonth) {
     const currentMonth = getState('currentMonth');
@@ -51,5 +54,7 @@ export const NavigationEvent = (e) => {
       setState('currentYear', currentYear + 1);
     }
     setState('currentMonth', changeMonth);
+    const hkbHistory = getState('hkbHistory');
+    setState('monthHistory', getMonthHistory(changeMonth, hkbHistory));
   }
 };

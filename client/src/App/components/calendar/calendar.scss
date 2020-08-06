@@ -4,7 +4,7 @@ $border: 2px solid rgba($color: #000000, $alpha: .1);
   display: flex;
   flex-direction: column;
   .week {
-    margin: auto;
+    width: 100%;
     display: flex;
     .day {
       width: 8rem;

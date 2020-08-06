@@ -36,10 +36,14 @@ const observer = {
     eventHandler: () => {},
   },
   payment: {
-    data:[],
+    data: [],
     eventHandler: () => {},
   },
   category: {
+    data: [],
+    eventHandler: () => {},
+  },
+  monthHistory: {
     data: [],
     eventHandler: () => {},
   },
