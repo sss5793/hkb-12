@@ -28,6 +28,20 @@ export const createHkbHist = async (data) =>
       .catch((error) => reject(error));
   });
 
+export const updateHkbHist = async (id, data) =>
+  new Promise((resolve, reject) => {
+    fetch(EndPoints.PUT_HKBHIST.url + id, {
+      method: EndPoints.PUT_HKBHIST.method,
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch((error) => reject(error));
+  });
+
 export const removeHkbHist = async (id) =>
   new Promise((resolve, reject) => {
     fetch(EndPoints.DELETE_HKBHIST.url + id, {

@@ -1,6 +1,16 @@
-import { getState, registerEvent, setState } from '../store';
-import { numberWithCommas, numberWithoutCommas, getFullDate } from '../utils';
-import { createHkbHist, getAllHkbHist, removeHkbHist } from '../apis';
+import { getState, setState } from '../store';
+import {
+  numberWithCommas,
+  numberWithoutCommas,
+  getFullDate,
+  getMonthHistory,
+} from '../utils';
+import {
+  createHkbHist,
+  getAllHkbHist,
+  removeHkbHist,
+  updateHkbHist,
+} from '../apis';
 
 async function getHkbHistory() {
   const res = await getAllHkbHist();
@@ -10,26 +20,36 @@ async function getHkbHistory() {
       createdAt: new Date(item.createdAt),
     }));
     setState('hkbHistory', data);
+    const currentMonth = getState('currentMonth');
+    setState('monthHistory', getMonthHistory(currentMonth, data));
   }
 }
+
+function resetForm() {
+  const form = document.querySelector('.hkb_form');
+  const category = form.querySelector('.category');
+  const payment = form.querySelector('.payment');
+  const createdAt = form.querySelector('.createdAt');
+  const amount = form.querySelector('.amount');
+  const content = form.querySelector('.content');
+  const contentsRemoveBtn = form.querySelector('.contents_remove');
+
+  category.value = '';
+  payment.value = '';
+  createdAt.value = getFullDate(new Date(), '-');
+  amount.value = 0;
+  content.value = '';
+  contentsRemoveBtn.innerText = '내용 지우기';
+}
+
 export async function HkbHistClickEvent(e) {
   const contentsRemoveBtn = document.querySelector(
     '.hkb_form .contents_remove'
   );
   // 내용 지우기 버튼 클릭
   if (e.target === contentsRemoveBtn) {
-    const form = document.querySelector('.hkb_form');
-    const category = form.querySelector('.category');
-    const payment = form.querySelector('.payment');
-    const createdAt = form.querySelector('.createdAt');
-    const amount = form.querySelector('.amount');
-    const content = form.querySelector('.content');
     if (contentsRemoveBtn.innerText !== '삭제') {
-      category.value = '';
-      payment.value = '';
-      createdAt.value = getFullDate(new Date(), '-');
-      amount.value = 0;
-      content.value = '';
+      resetForm();
     } else {
       // 현재 데이터 아이디 db에서 삭제하기
       const currentHistId = getState('currentHistId');
@@ -37,12 +57,8 @@ export async function HkbHistClickEvent(e) {
       if (res.success) {
         getHkbHistory();
         setState('currentType', '수입');
-        category.value = '';
-        payment.value = '';
-        createdAt.value = getFullDate(new Date(), '-');
-        amount.value = 0;
-        content.value = '';
-        contentsRemoveBtn.innerText = '내용 지우기';
+        setState('currentHistId', null);
+        resetForm();
       }
     }
   }
@@ -84,9 +100,19 @@ export async function HkbHistClickEvent(e) {
       content: content.value,
     };
 
-    const res = await createHkbHist(data);
-    if (res.success) {
-      getHkbHistory();
+    const currentHistId = getState('currentHistId');
+    if (currentHistId) {
+      const res = await updateHkbHist(currentHistId, data);
+      if (res.success) {
+        getHkbHistory();
+        resetForm();
+      }
+    } else {
+      const res = await createHkbHist(data);
+      if (res.success) {
+        getHkbHistory();
+        resetForm();
+      }
     }
   }
 

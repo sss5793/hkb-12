@@ -27,6 +27,7 @@ async function updateHkbHistById(req, res) {
   try {
     // req.query
     // req.body
+    await HkbHistService.updateHkbHistById(req.query.id, req.body);
     res.status(200).json({ success: true, payload: null });
   } catch (err) {
     res.status(500).json({ success: false, message: err });

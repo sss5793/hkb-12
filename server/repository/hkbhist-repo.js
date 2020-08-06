@@ -38,13 +38,16 @@ async function createHkbHist(data) {
   }
 }
 
-async function updateHkbHistById(data) {
+async function updateHkbHistById(id, data) {
   const conn = await pool.getConnection();
   try {
-    const { category, payment, amount, created_at, content, userId } = data;
+    console.log('repo', id, data);
+    const { category, payment, amount, created_at, content } = data;
     await conn.query(
-      `INSERT INTO HkbHist (category,payment,amount,created_at,content,user_id) VALUES (?, ?, ?, ?, ?, ?)`,
-      [category, payment, amount, created_at, content, userId]
+      `UPDATE HkbHist\
+      SET category = ?, payment = ?, amount = ?, created_at = ?, content = ?\
+      WHERE id = ?`,
+      [category, payment, amount, created_at, content, id]
     );
   } catch (e) {
     console.log(e);
