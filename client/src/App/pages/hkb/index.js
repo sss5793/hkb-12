@@ -28,11 +28,11 @@ const HkbPage = () => {
     const initData =  init();
     const { monthIncome, monthExpense, daysHistory, days } = initData;
     histList.innerHTML = days.map((day) => DailyHistory(new Date(day), daysHistory[day])).join('');
-    setState('allIncome',monthIncome);
-    setState('allExpense',monthExpense)
+    setState('allIncome', monthIncome);
+    setState('allExpense', monthExpense);
   }
 
-  registerEvent('hkbHistory',onChange);
+  registerEvent('hkbHistory', onChange);
 
   return (`
     <div class="hkb_page">
