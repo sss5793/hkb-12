@@ -6,9 +6,10 @@ import { getMonthHistory } from '../../utils';
 const GraphPage = () => {
   const expenseType = getState('expenseType');
   const category = getState('category');
+  const currentYear = getState('currentYear');
   const currentMonth = getState('currentMonth');
   const hkbHistory = getState('hkbHistory');
-  setState('monthHistory', getMonthHistory(currentMonth, hkbHistory));
+  setState('monthHistory', getMonthHistory(currentYear, currentMonth, hkbHistory));
 
   // 1. 지출 데이터만 가져온다.
 

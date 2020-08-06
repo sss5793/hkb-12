@@ -36,25 +36,29 @@ export const NavigationEvent = (e) => {
   if (target === prevMonth) {
     const currentMonth = getState('currentMonth');
     const currentYear = getState('currentYear');
+    let changeYear = currentYear;
     let changeMonth = parseInt(currentMonth) - 1;
     if (changeMonth < 1) {
       changeMonth = 12;
-      setState('currentYear', currentYear - 1);
+      changeYear -= 1;
     }
+    setState('currentYear', changeYear);
     setState('currentMonth', changeMonth);
     const hkbHistory = getState('hkbHistory');
-    setState('monthHistory', getMonthHistory(changeMonth, hkbHistory));
+    setState('monthHistory', getMonthHistory(changeYear, changeMonth, hkbHistory));
   }
   if (target === nextMonth) {
     const currentMonth = getState('currentMonth');
     const currentYear = getState('currentYear');
+    let changeYear = currentYear;
     let changeMonth = parseInt(currentMonth) + 1;
     if (changeMonth > 12) {
       changeMonth = 1;
-      setState('currentYear', currentYear + 1);
+      changeYear += 1;
     }
+    setState('currentYear', changeYear);
     setState('currentMonth', changeMonth);
     const hkbHistory = getState('hkbHistory');
-    setState('monthHistory', getMonthHistory(changeMonth, hkbHistory));
+    setState('monthHistory', getMonthHistory(changeYear, changeMonth, hkbHistory));
   }
 };

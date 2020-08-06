@@ -44,8 +44,8 @@ export const getFullDate = (date, format) => {
 };
 
 // 해당 달에 맞는 히스토리 필터링
-export const getMonthHistory = (month, history) =>
-  history.filter((item) => item.createdAt.getMonth() + 1 === month);
+export const getMonthHistory = (year, month, history) =>
+  history.filter((item) => item.createdAt.getMonth() + 1 === month && item.createdAt.getFullYear() === year);
 
 // 일자별로 히스토리를 객체형태로 반환
 export const getDaysHistory = (history) => {
