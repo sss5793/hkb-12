@@ -1,4 +1,4 @@
-const URL = `http://${process.env.SERVER}:3000/`;
+const URL = 'http://3.35.54.11/:3000/';
 
 export const EndPoints = {
   // 모든 거래 내역을 가져옵니다.
