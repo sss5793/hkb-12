@@ -39,14 +39,13 @@ export const getFullDate = (date, format) => {
   const year = date.getFullYear();
   const month = getMonth(date);
   const day = getDate(date);
-  const dateForm = year+ format + month + format + day;
+  const dateForm = year + format + month + format + day;
   return dateForm;
-}
+};
 
 // 해당 달에 맞는 히스토리 필터링
-export const getMonthHistory = (month, history) => history.filter(
-  (item) => item.createdAt.getMonth() + 1 === month,
-);
+export const getMonthHistory = (month, history) =>
+  history.filter((item) => item.createdAt.getMonth() + 1 === month);
 
 // 일자별로 히스토리를 객체형태로 반환
 export const getDaysHistory = (history) => {
@@ -94,6 +93,10 @@ export const getAllPercent = (history) => {
     percent: Math.round((parseInt(item.amount) / total) * 100),
   }));
 
+  allPercent.sort((a, b) => b.percent - a.percent);
+
+  console.log(allPercent);
+
   return allPercent;
 };
 
@@ -109,7 +112,7 @@ export const createDashArray = (history) => {
       }`;
     }
 
-    prevPercent = item.percent;
+    prevPercent += item.percent;
     return {
       ...item,
       dasharray,
