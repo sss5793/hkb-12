@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "proxy": "http://127.0.0.1:3000",
+  "proxy": "http://3.35.54.11:3000",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
