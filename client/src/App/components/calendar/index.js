@@ -65,7 +65,9 @@ const setCalendarData = (year, month, history) => {
         <div class='calendar__day ${en_days[j]} ${className}' id='${date}' style="display: flex;">
           <div>${dayNum}</div>
           <div class="history">${history.hasOwnProperty(date)
-    ? console.log(history[date])
+    ? `<div class='income_amount'}>${getAllIncome(history[date]) !== 0 ? `+${getAllIncome(history[date])}` : ''}</div>
+      <div class='expense_amount'}>${getAllExpense(history[date]) !== 0 ? `-${getAllExpense(history[date])}` : ''}</div>
+    `
     : ''}
           </div>
         </div>
