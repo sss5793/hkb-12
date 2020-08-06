@@ -1,7 +1,7 @@
 import './graph.scss';
 import { Graph, ExpenseFilter } from '../../components';
 import { getState, setState, registerEvent } from '../../store';
-import { getMonthHistory } from '../../utils';
+import { getMonthHistory, getAllExpense, numberWithCommas } from '../../utils';
 
 const GraphPage = () => {
   const expenseType = getState('expenseType');
@@ -33,43 +33,31 @@ const GraphPage = () => {
         amount,
       });
     });
-    return categoryHistList;
+    const monthExpense = getAllExpense(monthHistory);
+    return { categoryHistList, monthExpense };
   }
 
-  // let categoryHistList = [];
-  // expenseCategory.map((cate) => {
-  //   let categoryName = '';
-  //   let amount = 0;
-  //   monthHistory.map((item) => {
-  //     if (cate.name === item.category) {
-  //       categoryName = item.category;
-  //       amount += item.amount;
-  //     }
-  //   });
-  //   if (!categoryName) return;
-  //   categoryHistList = categoryHistList.concat({ name: categoryName, amount });
-  // });
-  // console.log(categoryHistList);
-  // 3. 계산한 amount로 percent를 구한다.
+  const { categoryHistList, monthExpense } = init();
 
-  const categoryHistList = init();
+  const circleBar = Graph.Circle(categoryHistList) + Graph.Bar(categoryHistList);
+  const expenseTypeContents = expenseType === 'category' ? circleBar : Graph.Line();
 
-  const circleBar =
-    Graph.Circle(categoryHistList) + Graph.Bar(categoryHistList);
-  const expenseTypeContents =
-    expenseType === 'category' ? circleBar : Graph.Line();
-
-  function onGraphChange(list) {
+  function onGraphChange(list, monthExpense) {
     const categoryType = Graph.Circle(list) + Graph.Bar(list);
     const type = getState('expenseType');
     const graphContainer = document.querySelector('.graph_container');
     const expenseTypeContent = type === 'category' ? categoryType : Graph.Line();
     graphContainer.innerHTML = expenseTypeContent;
+    // 지출 금액 바꾸기
+    const monthAllExpense = document.querySelector('.expense_filter .month_all_expense');
+    monthAllExpense.textContent = `${numberWithCommas(monthExpense)}원`;
+    const dateAllExpense = document.querySelector('.expense_filter .date_all_expense');
+    dateAllExpense.textContent = `${numberWithCommas(monthExpense)}원`;
   }
-  
+
   function onChange() {
-    const categoryHistList = init();
-    onGraphChange(categoryHistList);
+    const { categoryHistList, monthExpense } = init();
+    onGraphChange(categoryHistList, monthExpense);
   }
 
   registerEvent('expenseType', onChange);
@@ -77,7 +65,7 @@ const GraphPage = () => {
 
   return `
         <div class="graph">
-          ${ExpenseFilter()}
+          ${ExpenseFilter(monthExpense, monthExpense)}
           <div class="graph_container">${expenseTypeContents}</div>
         </div>`;
 };

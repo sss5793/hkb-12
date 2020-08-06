@@ -90,7 +90,7 @@ export const getAllPercent = (history) => {
   });
   const allPercent = history.map((item) => ({
     ...item,
-    percent: Math.round((parseInt(item.amount) / total) * 100),
+    percent: ((parseInt(item.amount) / total) * 100),
   }));
 
   allPercent.sort((a, b) => b.percent - a.percent);

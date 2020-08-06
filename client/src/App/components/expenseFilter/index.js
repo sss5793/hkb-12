@@ -1,13 +1,7 @@
 import './expenseFilter.scss';
-import { getAllExpense, numberWithCommas } from '../../utils';
-import { getState } from '../../store';
+import { numberWithCommas } from '../../utils';
 
-const ExpenseFilter = () => {
-  const currentMonth = getState('currentMonth');
-  const hkbHistory = getState('hkbHistory');
-  const monthHistory = hkbHistory.filter((item) => item.createdAt.getMonth() + 1 === currentMonth);
-  const monthExpense = getAllExpense(monthHistory);
-
+const ExpenseFilter = (monthExpense, dateAverage) => {
   return `
     <div class="expense_filter">
         <div class="filter">
@@ -21,11 +15,11 @@ const ExpenseFilter = () => {
         <div class="amount_average">
           <div class="month_amount">
               <p>이번 달 지출 금액</p>
-              <p class="all_expense">${numberWithCommas(monthExpense)}원</p>
+              <p class="month_all_expense">${numberWithCommas(monthExpense)}원</p>
           </div>
          <div class="date_amount">
               <p>이번 달 일평균</p>
-              <p class="all_expense">${numberWithCommas(monthExpense)}원</p>
+              <p class="date_all_expense">${numberWithCommas(dateAverage)}원</p>
           </div>
         </div>
     </div>
