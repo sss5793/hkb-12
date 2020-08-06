@@ -7,11 +7,12 @@ import {
 } from '../../utils';
 
 const HkbPage = () => {
+  const currentMonth = getState('currentMonth');
+  const hkbHistory = getState('hkbHistory');
+  setState('monthHistory', getMonthHistory(currentMonth, hkbHistory));
 
   function init() {
-    const currentMonth = getState('currentMonth');
-    const hkbHistory = getState('hkbHistory');
-    const monthHistory = getMonthHistory(currentMonth, hkbHistory);
+    const monthHistory = getState('monthHistory');
     const monthIncome = getAllIncome(monthHistory);
     const monthExpense = getAllExpense(monthHistory);
     const daysHistory = getDaysHistory(monthHistory);
@@ -20,19 +21,19 @@ const HkbPage = () => {
     return { days, daysHistory, monthIncome, monthExpense };
   }
 
-  const initData =  init();
+  const initData = init();
   const { monthIncome, monthExpense, daysHistory, days } = initData;
 
   function onChange() {
     const histList = document.querySelector('.history_list');
-    const initData =  init();
+    const initData = init();
     const { monthIncome, monthExpense, daysHistory, days } = initData;
     histList.innerHTML = days.map((day) => DailyHistory(new Date(day), daysHistory[day])).join('');
-    setState('allIncome',monthIncome);
-    setState('allExpense',monthExpense)
+    setState('allIncome', monthIncome);
+    setState('allExpense', monthExpense);
   }
 
-  registerEvent('hkbHistory',onChange);
+  registerEvent('monthHistory', onChange);
 
   return (`
     <div class="hkb_page">
