@@ -79,7 +79,6 @@ export const getDateAverage = (history) => {
     total += item;
     length += 1;
   });
-  console.log(total, length);
   const dayAverage = total / length;
 
   return dayAverage;

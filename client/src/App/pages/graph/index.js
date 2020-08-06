@@ -46,7 +46,7 @@ const GraphPage = () => {
     });
 
     const dateAverage = getDateAverage(dayHistory);
-    const monthExpense = getAllExpense(monthHistory);
+    // const monthExpense = getAllExpense(monthHistory);
     return { categoryHistList, monthExpense, dayHistory, dateAverage };
   }
 
@@ -56,7 +56,7 @@ const GraphPage = () => {
     Graph.Circle(categoryHistList) + Graph.Bar(categoryHistList);
   const expenseTypeContents =
     expenseType === 'category' ? circleBar : Graph.Line(dayHistory, dateAverage);
-  
+
   function onGraphChange(list, monthExpense, dayHistory, dateAverage) {
     const categoryType = Graph.Circle(list) + Graph.Bar(list);
     const type = getState('expenseType');
