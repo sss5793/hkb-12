@@ -31,7 +31,7 @@ const githubLogin = (passport) => {
       {
         clientID: process.env.GH_ID,
         clientSecret: process.env.GH_KEY,
-        callbackURL: 'http://localhost:3000/api/user/login/callback',
+        callbackURL: `http://${process.env.SERVER}:3000/api/user/login/callback`,
       }, // 인증 요청
       (accessToken, refreshToken, profile, done) => {
         const userId = profile.id;
