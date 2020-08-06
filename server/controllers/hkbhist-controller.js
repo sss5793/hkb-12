@@ -33,10 +33,11 @@ async function updateHkbHistById(req, res) {
   }
 }
 
-
 async function removeHkbHistById(req, res) {
   try {
     // req.query
+    // console.log(req.query);
+    await HkbHistService.removeHkbHistById(req.query.id);
     res.status(200).json({ success: true, payload: null });
   } catch (err) {
     res.status(500).json({ success: false, message: err });

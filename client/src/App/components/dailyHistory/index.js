@@ -10,6 +10,7 @@ const DailyHistory = (date, data) => {
   const week = getWeek(date.getDay());
   const dayAllIncome = getAllIncome(data);
   const dayAllExpense = getAllExpense(data);
+  data.sort((a, b) => parseInt(b.id) - parseInt(a.id));
 
   return `
     <table class='daily_history'>
@@ -22,7 +23,7 @@ const DailyHistory = (date, data) => {
         <span class='income_amount'>+${numberWithCommas(dayAllIncome)}원</span>
         <span class='expense_amount'>-${numberWithCommas(dayAllExpense)}원</span>
       </th>
-      ${data.reverse().map((item) => CaseHistory(item)).join('')}
+      ${data.map((item) => CaseHistory(date, item)).join('')}
     </table>
   `;
 };

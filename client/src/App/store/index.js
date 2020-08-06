@@ -19,6 +19,10 @@ const observer = {
     data: new Date().getFullYear(),
     eventHandler: () => {},
   },
+  currentHistId: {
+    data: 0,
+    eventHandler: () => {},
+  },
   expenseType: {
     data: 'category',
     eventHandler: () => {},
