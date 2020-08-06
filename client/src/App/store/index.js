@@ -20,7 +20,7 @@ const observer = {
     eventHandler: () => {},
   },
   currentHistId: {
-    data: 0,
+    data: null,
     eventHandler: () => {},
   },
   expenseType: {

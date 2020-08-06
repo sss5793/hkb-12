@@ -10,8 +10,8 @@ async function createHkbHist(data) {
   return hkbHist;
 }
 
-async function updateHkbHistById(data) {
-  const hkbHist = await hkbHistRepo.updateHkbHistById(data);
+async function updateHkbHistById(id, data) {
+  const hkbHist = await hkbHistRepo.updateHkbHistById(id, data);
   return hkbHist;
 }
 
