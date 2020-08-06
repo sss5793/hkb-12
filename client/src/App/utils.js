@@ -11,6 +11,13 @@ export const numberWithCommas = (num) => {
   return commaNum;
 };
 
+export const numberWithoutCommas = (num) => {
+  // 반점 제거
+  const commaNum = num.toString().split(',').join('');
+
+  return parseInt(commaNum);
+};
+
 export const getMonth = (date) => {
   const month =
     date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
@@ -28,6 +35,14 @@ export const getWeek = (date) => {
   return dayOfWeek;
 };
 
+export const getFullDate = (date, format) => {
+  const year = date.getFullYear();
+  const month = getMonth(date);
+  const day = getDate(date);
+  const dateForm = year+ format + month + format + day;
+  return dateForm;
+}
+
 // 해당 달에 맞는 히스토리 필터링
 export const getMonthHistory = (month, history) => history.filter(
   (item) => item.createdAt.getMonth() + 1 === month,
@@ -39,7 +54,7 @@ export const getDaysHistory = (history) => {
   // 변경한 배열 생성해주는 로직 push -> concat
   history.forEach((element) => {
     const date = element.createdAt;
-    const d = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+    const d = getFullDate(date, '.');
     daysHistory[d] = daysHistory[d] || [];
     daysHistory[d] = daysHistory[d].concat(element);
   });
@@ -102,4 +117,9 @@ export const createDashArray = (history) => {
   });
 
   return arr;
+};
+
+export const validation = (data) => {
+  console.log(data);
+  return data;
 };

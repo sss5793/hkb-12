@@ -5,6 +5,13 @@ async function findHkbHistByUserId(userId) {
   return hkbHist;
 }
 
+async function createHkbHist(data) {
+  const hkbHist = await hkbHistRepo.createHkbHist(data);
+  return hkbHist;
+}
+
+
 module.exports = {
   findHkbHistByUserId,
+  createHkbHist,
 };
