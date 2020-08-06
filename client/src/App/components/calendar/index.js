@@ -78,9 +78,9 @@ const setCalendarData = (year, month, history) => {
   return weekList.map((week) => `<div class='week'>${week.join('')}</div>`).join('');
 };
 
-const Calendar = (currentMonth, history) => {
+const Calendar = (currentYear, currentMonth, history) => {
   // 달력 데이터를 가공하는 함수에 년,월을 인자로 넘겨주어 실행합니다.
-  const calendar = setCalendarData(today.getFullYear(), currentMonth, history);
+  const calendar = setCalendarData(currentYear, currentMonth, history);
   return (`
     <div class='calendar'>
       ${day()}
