@@ -22,14 +22,13 @@ $primaryColor: #87d0cb;
   .labels.y-labels {
   }
 
-
   .graph {
     height: 500px;
     width: 800px;
     animation: line-circle-fill 1s;
   }
 
-   .grid {
+  .grid {
     stroke: #ccc;
     stroke-dasharray: 0;
     stroke-width: 1;
@@ -37,6 +36,10 @@ $primaryColor: #87d0cb;
 
   .labels {
     font-size: 0.7rem;
+  }
+
+  .xLabel {
+    text-anchor: middle;
   }
 
   .circle {
