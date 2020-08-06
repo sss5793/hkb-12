@@ -19,8 +19,8 @@ const localLogin = (passport) => {
         }
         console.log('계정이 없습니다.');
         return done(null, false);
-      }
-    )
+      },
+    ),
   );
 };
 
@@ -34,17 +34,26 @@ const githubLogin = (passport) => {
         callbackURL: `http://${process.env.SERVER}:3000/api/user/login/callback`,
       }, // 인증 요청
       (accessToken, refreshToken, profile, done) => {
-        const userId = profile.id;
-        const name = profile.username;
+        const { username: userId, displayName: name } = profile;
         // const profileImageUrl = profile.photos[0].value;
         const user = { userId, name };
         done(null, user);
-      }
-    )
+      },
+    ),
   );
+};
+
+const findUserById = async (data) => {
+  let user = await userRepo.findUserById(data.userId);
+  if (!user) {
+    await userRepo.createUser(data);
+    user = await userRepo.findUserById(data.userId);
+  }
+  return user;
 };
 
 module.exports = {
   localLogin,
   githubLogin,
+  findUserById,
 };

@@ -1,10 +1,9 @@
 class UserDTO {
   constructor({
-    userId, user_id, name, password,
+    userId, user_id, name,
   }) {
     this.name = name;
     this.userId = userId || user_id;
-    this.password = password;
   }
 }
 

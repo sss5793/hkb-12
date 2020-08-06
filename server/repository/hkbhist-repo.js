@@ -26,10 +26,10 @@ async function findHkbHistByUserId(userId) {
 async function createHkbHist(data) {
   const conn = await pool.getConnection();
   try {
-    const { category, payment, amount, created_at, content, userId } = data;
+    const { category, payment, amount, createdAt, content, userId } = data;
     await conn.query(
       `INSERT INTO HkbHist (category,payment,amount,created_at,content,user_id) VALUES (?, ?, ?, ?, ?, ?)`,
-      [category, payment, amount, created_at, content, userId]
+      [category, payment, amount, new Date(createdAt), content, userId]
     );
   } catch (e) {
     console.log(e);

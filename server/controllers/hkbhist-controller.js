@@ -3,8 +3,7 @@ const HkbHistService = require('../services/hkbhist-service');
 
 async function findHkbHistByUserId(req, res) {
   try {
-    const userId = 'admin';
-    const hkbHist = await HkbHistService.findHkbHistByUserId(userId);
+    const hkbHist = await HkbHistService.findHkbHistByUserId(req.user.userId);
     res.status(200).json({ success: true, payload: hkbHist });
   } catch (err) {
     res.status(500).json({ success: false, message: err });
@@ -14,8 +13,7 @@ async function findHkbHistByUserId(req, res) {
 async function createHkbHist(req, res) {
   try {
     // req.body
-    const userId = 'admin';
-    const data = { ...req.body, userId };
+    const data = { ...req.body, userId: req.user.userId };
     await HkbHistService.createHkbHist(data);
     res.status(200).json({ success: true });
   } catch (err) {

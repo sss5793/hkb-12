@@ -1,10 +1,11 @@
 const express = require('express');
+const { ensureAuthenticated } = require('../middleware');
 const paymentController = require('../controllers/payment-controller');
 
 const router = express.Router();
 
-router.get('/', paymentController.findPaymentByUserId);
-// router.post('/', paymentController.createPayment);
-// router.delete('/', paymentController.removePaymentByName);
+router.get('/', ensureAuthenticated, paymentController.findPaymentByUserId);
+// router.post('/', ensureAuthenticated, paymentController.createPayment);
+// router.delete('/', ensureAuthenticated, paymentController.removePaymentByName);
 
 module.exports = router;
