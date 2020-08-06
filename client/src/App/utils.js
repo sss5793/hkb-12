@@ -1,3 +1,13 @@
+export const numberFormat = (num) => {
+  let commaNum = '0원';
+  if (num > 0 && num < 10000){
+    commaNum = num/1000 +'천원';
+  } else if(num >= 10000 && num < 100000000) {
+    commaNum = num/10000 +'만원';
+  }
+  return commaNum;
+};
+
 export const numberWithCommas = (num) => {
   // 숫자만 입력 가능하게, 앞자리에 0 빼주기
   let commaNum = num.toString().replace(/^[0]|[^0-9,]/g, '');
@@ -60,6 +70,22 @@ export const getDaysHistory = (history) => {
 
   return daysHistory;
 };
+
+// 일 평균 구하기
+export const getDateAverage = (history) => {
+  let total = 0;
+  let length = 0;
+  history.forEach((item) => {
+    total += item;
+    length += 1;
+  });
+  console.log(total, length);
+  const dayAverage = total / length;
+
+  return dayAverage;
+};
+
+
 
 export const getAllIncome = (history) => {
   let dayAllIncome = 0;

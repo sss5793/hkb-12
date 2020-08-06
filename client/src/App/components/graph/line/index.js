@@ -1,10 +1,12 @@
 import './line.scss';
 import { getState } from '../../../store';
+import { getAllExpense, numberFormat, getDateAverage } from '../../../utils';
 
-const Line = () => {
+const Line = (dayHistory, dateAverage) => {
   const currentMonth = getState('currentMonth');
   const lastDate = new Date('2020', currentMonth, 0).getDate();
-  const maxAmount = 200;
+  const monthHistory = getState('monthHistory');
+  const monthExpense = getAllExpense(monthHistory);
 
   let xLabel = [];
   for (let i = 1; i <= lastDate; i++) {
@@ -14,52 +16,60 @@ const Line = () => {
   }
 
   let yLabel = [];
-  for (let i = maxAmount; i >= 0; i--) {
-    if (i % 20 === 0) {
-      yLabel = [...yLabel, i];
+  for (let i = 0; i <= 10; i++) {
+    yLabel = [...yLabel, i * (monthExpense / 10)];
+  }
+
+  // 데이터 형태 => x 초기 100, y 초기 190
+  let data = [];
+  for (let i = 1; i <= lastDate; i++) {
+    if (dayHistory[i]) {
+      // console.log(dayHistory[i]);
+      // console.log((190 * yLabel[1]) / dayHistory[i]);
+      data = [...data, `${100 + (i - 1) * 10},${(210 * yLabel[1]) / dayHistory[i]}`];
+    }else {
+      data = [...data, `${100 + (i - 1) * 10},210`];
     }
   }
 
-  // 데이터 형태 => x 초기 51, y 초기 209
-  const data = [
-    '51,209',
-    '80,190',
-    '110,170',
-    '140,150',
-    '170,130',
-    '200,110',
-    '230,90',
-    '260,70',
-    '290,50',
-    '310,30',
-    '330,10',
-  ];
+  console.log(dateAverage);
+  const averageY = ((210 * yLabel[2]) / parseInt(dateAverage));
+  console.log(yLabel[1], averageY);
 
-  const yMax = 10 + (yLabel.length - 1) * 20;
+  const yMax = 30 + (yLabel.length - 1) * 20;
   return `
     <div class="line">
         <svg viewBox="0 0 500 250" class="chart">
-            <g class="grid x-grid" id="xGrid">
-              <line x1="50" x2="50" y1="0" y2=${yMax}></line>
-            </g>
             <g class="grid y-grid" id="yGrid">
-              <line x1="50" x2="500" y1=${yMax} y2=${yMax}></line>
+              ${yLabel
+                .map(
+                  (item, index) =>
+                    `<line x1="50" x2="500" y1=${yMax - (index + 1) * 20} y2=${
+                      yMax - (index + 1) * 20
+                    }></line>`
+                )
+                .join('')}
+                <line x1="50" x2="500" y1=${averageY} y2=${averageY} stroke-dasharray="5,5" stroke='#29b7ae'></line>
+              <line x1="50" x2="500" y1=${yMax} y2=${yMax} stroke='#9b9797'></line>
             </g>
             <g class="labels x-labels">
                 ${xLabel
                   .map(
                     (item, index) =>
-                      `<text x=${100 + index * 50} y=${yMax + 20}>${
-                        currentMonth + '.' + item
-                      }</text>`
+                      `<text class='xLabel' x=${100 + index * 50} y=${
+                        yMax + 20
+                      }>${currentMonth + '.' + item}</text>`
                   )
                   .join('')}
             </g>
             <g class="labels y-labels">
               ${yLabel
+                .reverse()
                 .map(
                   (item, index) =>
-                    `<text x="0" y=${10 + index * 20}>${item}만원</text>`
+                    `<text x="0" y=${10 + index * 20}>${numberFormat(
+                      item
+                    )}</text>`
                 )
                 .join('')}
             </g>
@@ -74,12 +84,14 @@ const Line = () => {
                />
             </g>
             <g class="circle" data-setname="Our first data set">
-              ${data.map(
-                (item) =>
-                  `<circle cx=${item.split(',')[0]} cy=${
-                    item.split(',')[1]
-                  } r="2"></circle>`
-              )}
+              ${data
+                .map(
+                  (item) =>
+                    `<circle cx=${item.split(',')[0]} cy=${
+                      item.split(',')[1]
+                    } r="2"></circle>`
+                )
+                .join('')}
             </g>
         </svg>
     </div>
