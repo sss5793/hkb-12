@@ -94,9 +94,6 @@ export const getAllPercent = (history) => {
   }));
 
   allPercent.sort((a, b) => b.percent - a.percent);
-
-  console.log(allPercent);
-
   return allPercent;
 };
 
@@ -106,6 +103,8 @@ export const createDashArray = (history) => {
     let dasharray = '0 0 0 0';
     if (index === 0) {
       dasharray = `${item.percent} ${100 - item.percent} 0 0`;
+    } else if (index === history.length - 1) {
+      dasharray = `0 ${prevPercent} ${item.percent} 0`;
     } else {
       dasharray = `0 ${prevPercent} ${item.percent} ${
         100 - prevPercent - item.percent
