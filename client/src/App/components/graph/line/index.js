@@ -26,17 +26,22 @@ const Line = (dayHistory, dateAverage) => {
     if (dayHistory[i]) {
       // console.log(dayHistory[i]);
       // console.log((190 * yLabel[1]) / dayHistory[i]);
-      data = [...data, `${100 + (i - 1) * 10},${(210 * yLabel[1]) / dayHistory[i]}`];
-    }else {
-      data = [...data, `${100 + (i - 1) * 10},210`];
+      data = [
+        ...data,
+        `${100 + (i - 1) * 10},${
+          205 - dayHistory[i] * (205 / yLabel[yLabel.length - 1])
+        }`,
+      ];
+    } else {
+      data = [...data, `${100 + (i - 1) * 10},205`];
     }
   }
 
   console.log(dateAverage);
-  const averageY = ((210 * yLabel[2]) / parseInt(dateAverage));
+  const averageY = 205 - dateAverage * (205 / yLabel[yLabel.length - 1]);
   console.log(yLabel[1], averageY);
 
-  const yMax = 30 + (yLabel.length - 1) * 20;
+  const yMax = 5 + (yLabel.length - 1) * 20;
   return `
     <div class="line">
         <svg viewBox="0 0 500 250" class="chart">
@@ -44,20 +49,20 @@ const Line = (dayHistory, dateAverage) => {
               ${yLabel
                 .map(
                   (item, index) =>
-                    `<line x1="50" x2="500" y1=${yMax - (index + 1) * 20} y2=${
-                      yMax - (index + 1) * 20
+                    `<line x1="50" x2="500" y1=${yMax - index * 20} y2=${
+                      yMax - index * 20
                     }></line>`
                 )
                 .join('')}
                 <line x1="50" x2="500" y1=${averageY} y2=${averageY} stroke-dasharray="5,5" stroke='#29b7ae'></line>
-              <line x1="50" x2="500" y1=${yMax} y2=${yMax} stroke='#9b9797'></line>
+              <line x1="50" x2="500" y1=${yMax + 20} y2=${yMax + 20} stroke='#9b9797'></line>
             </g>
             <g class="labels x-labels">
                 ${xLabel
                   .map(
                     (item, index) =>
                       `<text class='xLabel' x=${100 + index * 50} y=${
-                        yMax + 20
+                        yMax + 40
                       }>${currentMonth + '.' + item}</text>`
                   )
                   .join('')}

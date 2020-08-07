@@ -39,13 +39,15 @@ const GraphPage = () => {
     // 일별 amount를 계산한다.
     const monthExpense = getAllExpense(monthHistory);
     const dayHistory = [];
-    monthHistory.forEach((item) => {
+    const expenseDay = monthHistory.filter((item) => item.type === '지출');
+    expenseDay.forEach((item) => {
       const date = item.createdAt.getDate();
       dayHistory[date] = dayHistory[date] || 0;
       dayHistory[date] = dayHistory[date] + item.amount;
     });
 
     const dateAverage = getDateAverage(dayHistory);
+    console.log(dateAverage);
     // const monthExpense = getAllExpense(monthHistory);
     return { categoryHistList, monthExpense, dayHistory, dateAverage };
   }
@@ -68,7 +70,7 @@ const GraphPage = () => {
     const monthAllExpense = document.querySelector('.expense_filter .month_all_expense');
     monthAllExpense.textContent = `${numberWithCommas(monthExpense)}원`;
     const dateAllExpense = document.querySelector('.expense_filter .date_all_expense');
-    dateAllExpense.textContent = `${numberWithCommas(dateAverage)}원`;
+    dateAllExpense.textContent = `${numberWithCommas(Math.round(dateAverage))}원`;
   }
 
   function onChange() {
@@ -81,7 +83,7 @@ const GraphPage = () => {
 
   return `
         <div class="graph">
-          ${ExpenseFilter(monthExpense, monthExpense)}
+          ${ExpenseFilter(monthExpense, Math.round(dateAverage))}
           <div class="graph_container">${expenseTypeContents}</div>
         </div>`;
 };
