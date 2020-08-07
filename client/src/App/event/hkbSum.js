@@ -3,7 +3,7 @@ import { HkbSum } from '../components';
 function hkbSumEvent(e) {
   const incomeCheck = document.querySelector('.hkb_sum #income');
   const expenseCheck = document.querySelector('.hkb_sum #expense');
-  console.log()
+
   if (e.target.closest("#income_check")) {
     if (incomeCheck.checked) {
       incomeCheck.checked = false;

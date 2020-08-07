@@ -79,7 +79,6 @@ export const getDateAverage = (history) => {
     total += item;
     length += 1;
   });
-  console.log(history,total, length);
   const dayAverage = total / length;
 
   return dayAverage;
@@ -148,6 +147,5 @@ export const createDashArray = (history) => {
 };
 
 export const validation = (data) => {
-  console.log(data);
   return data;
 };
