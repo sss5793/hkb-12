@@ -1,0 +1,78 @@
+$primaryColor: #0074d9;
+
+@keyframes circle-chart-fill {
+  0% {
+    stroke-dasharray: 100 0;
+  }
+  100% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+@keyframes hover-circle-chart {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.circle {
+  margin-bottom: 30px;
+
+  .chart {
+    margin: 0 auto;
+    transform: rotate(90deg);
+    background: #fff;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .pie {
+    fill: transparent;
+    stroke-width: 31.6;
+  }
+
+  .pie_animation {
+    fill: transparent;
+    stroke-width: 32;
+    animation: circle-chart-fill 1s ease;
+  }
+
+  .pie_hover_animation {
+    animation: hover-circle-chart 1s ease;
+  }
+
+  .label {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .item {
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        font-weight: 700;
+
+        .fill {
+          width: 12px;
+          height: 12px;
+          margin-right: 3px;
+        }
+      }
+
+      .fill {
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
+      .name {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

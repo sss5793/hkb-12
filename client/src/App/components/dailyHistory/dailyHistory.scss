@@ -1,0 +1,44 @@
+.daily_history {
+  width: 100%;
+  font-size: 0.9rem;
+  border-spacing: 0;
+  color: #4e4e4e;
+
+  &:last-child {
+    border-bottom: 1px solid #a5a3a3;
+  }
+
+  th,
+  tr,
+  td {
+    font-weight: normal;
+    padding: 8px 0;
+  }
+
+  th {
+    border-top: 2px solid #e9e9eb;
+  }
+
+  th:first-child {
+    text-align: left;
+    width: 5rem;
+  }
+
+  th:last-child {
+    text-align: right;
+    width: 150px;
+  }
+
+  .week {
+    color: #cac7c7;
+  }
+
+  .income_amount {
+    color: #3a78fe;
+    margin-right: 10px;
+  }
+
+  .expense_amount {
+    color: #29b7ad;
+  }
+}

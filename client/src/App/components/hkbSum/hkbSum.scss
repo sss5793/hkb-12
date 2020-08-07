@@ -1,0 +1,33 @@
+.hkb_sum {
+  text-align: center;
+  margin: 15px 0;
+
+  .row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    input[type='checkbox'] {
+      width: 50px;
+      z-index: -1;
+    }
+
+    label {
+      width: 200px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+    }
+
+    .income {
+      color: #3a78fe;
+    }
+    .expense {
+      color: #29b7ad;
+    }
+  }
+}

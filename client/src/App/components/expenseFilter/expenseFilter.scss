@@ -1,0 +1,48 @@
+$baseColor : #29b7ad;
+$subColor : #93a7ce;
+
+.expense_filter{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+
+  .filter {
+    display: flex;
+
+    .radio {
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+
+      input {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .amount_average {
+    .month_amount {
+      display: flex;
+
+      .month_all_expense {
+        width: 10em;
+        text-align: right;
+        color: $baseColor;
+      }
+    }
+    .date_amount {
+      display: none;
+      font-size: 1rem;
+      justify-content: flex-end;
+      color: $subColor;
+      margin-top: 10px;
+
+      .date_all_expense {
+        width: 7em;
+        text-align: right;
+      }
+    }
+  }
+}
