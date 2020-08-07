@@ -4,10 +4,14 @@ import { numberWithCommas } from '../../../utils';
 const CaseHistory = (date, data) => {
   const { category, content, payment, amount, type, id } = data;
   const historyType = type === '수입' ? '+' : '-';
+  const caseType = type === '수입' ? 'income_amount' : 'expense_amount';
   const historyTypeColor = type === '수입' ? '#3a78fe' : '#29b7ad';
 
+  // income_amount : 수입
+  // expense_amount : 지출
+
   return `
-	<tr class='case_history' id='case_${id}'>
+	<tr class='case_history ${caseType}' id='case_${id}'>
     <td>
       <div class='category' style='background-color:${historyTypeColor}'>
         ${category}
