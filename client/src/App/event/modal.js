@@ -31,18 +31,18 @@ export async function ModalClickEvent(e) {
       alert("결제수단을 삭제하는데 실패하였습니다.");
     }
   } else if (e.target.closest('.register')) { // 등록
-    let payment = document.querySelector('.input-payment').value;
+    let payment = document.querySelector('.input-payment');
 
-    if (!payment) {
+    if (!payment.value) {
       alert('결제수단을 입력해주세요.');
       return false;
     }
 
-    const res = await createPayment({ name: payment });
+    const res = await createPayment({ name: payment.value });
 
     if (res.success) {
       getAllPayments();
-      payment = '';
+      payment.value = '';
     } else {
       alert('결제수단은 생성하는데 실패하였습니다.');
     }
