@@ -14,6 +14,34 @@ async function findPaymentByUserId(userId) {
   }
 }
 
+async function createPayment(data) {
+  const conn = await pool.getConnection();
+  try {
+    const { name, userId } = data;
+    await conn.query(
+      `INSERT INTO Payment (name, user_id) VALUES (?, ?)`,
+      [name, userId]
+    );
+  } catch (e) {
+    console.log(e);
+  } finally {
+    conn.release();
+  }
+}
+
+async function removePaymentByName(name) {
+  const conn = await pool.getConnection();
+  try {
+    await conn.query(`DELETE FROM Payment WHERE name = ?`, [name]);
+  } catch (e) {
+    console.log(e);
+  } finally {
+    conn.release();
+  }
+}
+
 module.exports = {
   findPaymentByUserId,
-}
+  createPayment,
+  removePaymentByName,
+};

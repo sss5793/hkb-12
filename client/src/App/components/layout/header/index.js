@@ -1,8 +1,10 @@
 import './header.scss';
+import ModalBtn from './modalBtn';
 
 const Header = () => (
   `<header class="header">
-    가계부
+    <div class="title">가계부</div>
+    ${ModalBtn()}
   </header>`
 );
 

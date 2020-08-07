@@ -5,7 +5,7 @@ const paymentController = require('../controllers/payment-controller');
 const router = express.Router();
 
 router.get('/', ensureAuthenticated, paymentController.findPaymentByUserId);
-// router.post('/', ensureAuthenticated, paymentController.createPayment);
-// router.delete('/', ensureAuthenticated, paymentController.removePaymentByName);
+router.post('/', ensureAuthenticated, paymentController.createPayment);
+router.delete('/', ensureAuthenticated, paymentController.removePaymentByName);
 
 module.exports = router;
