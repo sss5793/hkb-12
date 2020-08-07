@@ -41,6 +41,7 @@ function resetForm() {
   amount.value = 0;
   content.value = '';
   contentsRemoveBtn.innerText = '내용 지우기';
+  setState('currentHistId', null);
 }
 
 export async function HkbHistClickEvent(e) {
@@ -58,7 +59,6 @@ export async function HkbHistClickEvent(e) {
       if (res.success) {
         getHkbHistory();
         setState('currentType', '수입');
-        setState('currentHistId', null);
         resetForm();
       }
     }

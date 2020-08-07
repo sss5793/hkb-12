@@ -10,12 +10,18 @@ import {
   GraphMouseOut,
   NavigationEvent,
   hkbSumEvent,
+  OpenModalBtnEvent,
+  ModalClickEvent,
 } from './event';
 import { getAllHkbHist, getCategory, getPayment } from "./apis";
 
 const pageRoute = (path) => {
   const layout = document.querySelector('.contents');
   layout.innerHTML = Route(path);
+  const modalBtn = document.querySelector('.open-modal-btn');
+  modalBtn.addEventListener('click', OpenModalBtnEvent);
+  const modal = document.querySelector('.modal');
+  modal.addEventListener('click', ModalClickEvent);
   // TODO : 따로 init 함수로 빼기?
   if (path === '/graph') {
     const graphPage = document.querySelector('.graph');
@@ -55,7 +61,7 @@ const App = () => {
   // 네비게이션 액션 등록
   app.addEventListener('click', NavigationEvent);
 
-  window.addEventListener('DOMContentLoaded',  async () => {
+  window.addEventListener('DOMContentLoaded', async () => {
     if(window.location.pathname !== '/') {
       const histRes = await getAllHkbHist();
       if(histRes.success){

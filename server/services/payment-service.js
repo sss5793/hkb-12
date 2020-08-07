@@ -5,6 +5,18 @@ async function findPaymentByUserId(userId) {
   return paymentList;
 }
 
+async function createPayment(data) {
+  await PaymentRepo.createPayment(data);
+  return;
+}
+
+async function removePaymentByName(name) {
+  await PaymentRepo.removePaymentByName(name);
+  return;
+}
+
 module.exports = {
   findPaymentByUserId,
+  createPayment,
+  removePaymentByName,
 };
