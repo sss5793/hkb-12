@@ -44,6 +44,7 @@ GH_KEY = ...
 SERVER = ...
   ```
   로 DB 관련 환경변수 추가
+  
 4. nodemon 실행
   ```
 cd ~/hkb-12/server
