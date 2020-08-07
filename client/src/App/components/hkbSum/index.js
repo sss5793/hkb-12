@@ -19,19 +19,19 @@ const HkbSum = (income, expense) => {
     allExpenseDom.textContent = `${numberWithCommas(allExpense)} 원`;
   }
 
-  registerEvent('allIncome',onChangeIncome);
-  registerEvent('allExpense',onChangeExpense);
+  registerEvent('allIncome', onChangeIncome);
+  registerEvent('allExpense', onChangeExpense);
 
   return `
   <div class='hkb_sum'>
-    <div class='row'>
+    <div class='row' id='income_check'>
       <input type='checkbox' id='income' checked/>
       <label for="income" class='income'>
         <p class='label'>수입</p>
         <p class="all_income">${numberWithCommas(allIncome)} 원</p>
       </label>
     </div>
-    <div class='row'>
+    <div class='row' id='expense_check'>
       <input type='checkbox' id='expense' checked/>
       <label for="expense" class='expense'>
         <p class='label'>지출</p>

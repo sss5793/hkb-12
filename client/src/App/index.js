@@ -9,6 +9,7 @@ import {
   GraphMouseOver,
   GraphMouseOut,
   NavigationEvent,
+  hkbSumEvent,
 } from './event';
 import { getAllHkbHist, getCategory, getPayment } from "./apis";
 
@@ -22,11 +23,15 @@ const pageRoute = (path) => {
     graphPage.addEventListener('mouseover', GraphMouseOver);
     graphPage.addEventListener('mouseout', GraphMouseOut);
   } else if (path === '/calendar') {
-
+    const hkbSum = document.querySelector('.hkb_sum');
+    hkbSum.addEventListener('click', hkbSumEvent);
   } else if (path === '/hkb') {
     const hkbPage = document.querySelector('.hkb_page');
     hkbPage.addEventListener('click', HkbHistClickEvent);
     hkbPage.addEventListener('input', HkbHistInputEvent);
+
+    const hkbSum = document.querySelector('.hkb_sum');
+    hkbSum.addEventListener('click', hkbSumEvent);
 
     // 분류에 선택 클래스 넣어주기
     const currentType = getState('currentType');
