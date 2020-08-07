@@ -82,6 +82,35 @@ export async function getPayment() {
       .catch((error) => reject(error));
   });
 }
+
+export async function createPayment(data) {
+  return new Promise((resolve, reject) => {
+    fetch(EndPoints.POST_PAYMENT.url, {
+      method: EndPoints.POST_PAYMENT.method,
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch((error) => reject(error));
+  });
+}
+
+export const removePayment = async (name) =>
+  new Promise((resolve, reject) => {
+    fetch(EndPoints.DELETE_PAYMENT.url + name, {
+      method: EndPoints.DELETE_PAYMENT.method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch((error) => reject(error));
+  });
+
 export const getLogin = async () => {
   const res = await fetch(EndPoints.GET_LOGIN.url, {
     method: EndPoints.GET_LOGIN.method,
